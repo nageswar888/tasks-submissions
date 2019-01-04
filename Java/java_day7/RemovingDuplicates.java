@@ -11,7 +11,7 @@ public class RemovingDuplicates {
 		int size = in.nextInt();
 		int a[] = new int[size];
 		int b[] = new int[size];
-		int count=0;
+		int count=0;  //index for the non duplicated elements array
 		System.out.println("enter the values into array");
 		for(int i=0;i<size;i++){
 			a[i] = in.nextInt();
@@ -20,10 +20,10 @@ public class RemovingDuplicates {
 			if(a[i]!='$'){
 			for(int j=i+1;j<size;j++){
 				if(a[i]==a[j]){
-					a[j]='$';
+					a[j]='$'; //making the duplicated values $
 				}
 			}
-				b[count++]=a[i];
+				b[count++]=a[i]; //saving the non duplicated values into  array
 				
 		}
 		}

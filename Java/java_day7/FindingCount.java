@@ -15,12 +15,12 @@ public class FindingCount
 		Scanner in = new Scanner(System.in);
 		char a[] = {'a','b','b','c','d','f'};
 		System.out.println("Enter the value of k :");
-		int k = in.nextInt();
+		int k = in.nextInt();  //this is for finding the char that repeat
 		int i;
 		for( i=0;i<a.length;i++)
 		{	
 			int count=1;
-			if(a[i]!='$')
+			if(a[i]!='$') //it is for repetitive letters
 			{
 				for(int j=i+1;j<a.length;j++)
 				{
@@ -39,7 +39,7 @@ public class FindingCount
 			
 			
 		}
-		if(i==a.length)
+		if(i==a.length) //if i = length then our count repeated letter is not there 
 			System.out.print("anything");
 		in.close();
 	}
