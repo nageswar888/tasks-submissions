@@ -1,7 +1,8 @@
 package exam;
 
 import java.io.*;
-import java.util.Scanner;
+import java.util.*;
+
 class Students implements Serializable
 {
 	int id;
@@ -12,6 +13,10 @@ class Students implements Serializable
 		this.id = i;
 		this.name = n;
 		this.percentage = p;
+	}
+	public String toString()
+	{
+		return this.id+" "+this.name+" "+this.percentage;
 	}
 }
 public class Student {
@@ -37,11 +42,13 @@ public class Student {
 		String name4 = in.next();
 		double pr4 = in.nextDouble();
 
+		Students s[] = new Students[6];
+		 s[0] = new Students(id1,name1,pr1);
+		 s[1] = new Students(id2,name2,pr2);
+		 s[2] = new Students(id3,name3,pr3);
+		 s[3] = new Students(id4,name4,pr4);
 		
-		Students s1 = new Students(id1,name1,pr1);
-		Students s2 = new Students(id2,name2,pr2);
-		Students s3 = new Students(id3,name3,pr3);
-		Students s4 = new Students(id4,name4,pr4);
+		
 		File f = new File("/home/sk-18/Desktop/Students");
 		if(!f.exists())
 		{
@@ -61,18 +68,32 @@ public class Student {
 		{
 			System.out.println("file already exist ");
 		}
-		
+		ArrayList<Students> al = new ArrayList<Students>();
 		FileOutputStream fr = new FileOutputStream(f1);
 		ObjectOutputStream out=new ObjectOutputStream(fr);
-		out.writeObject(s1);
-		out.writeObject(s2);
-		out.writeObject(s3);
-		out.writeObject(s4);
+		
+		al.add(s[0]);
+		al.add(s[1]);
+		al.add(s[2]);
+		al.add(s[3]);
+		out.writeObject(al);
 		
 		
 		 ObjectInputStream i = new ObjectInputStream(new FileInputStream(f1));
-
+		 ArrayList<Students> obj =(ArrayList<Students>)i.readObject();
+		System.out.println(obj);
 		
+		s[4] = new Students(5,"dff",5);
+		
+		al.add(s[4]);
+		//Students s5 = new Students(5,"name5",5);
+		FileOutputStream fr1 = new FileOutputStream(f1);
+		ObjectOutputStream out1=new ObjectOutputStream(fr);
+		out.writeObject(al);
+		
+		ObjectInputStream i1 = new ObjectInputStream(new FileInputStream(f1));
+		 Students obj1 =(Students)i1.readObject();
+		System.out.println(obj1);
 		}
 		catch(Exception e)
 		{

@@ -23,7 +23,7 @@ class Depositer extends Thread
 	{
 		try{
 		int i=0;
-		System.out.println(Thread.MAX_PRIORITY);
+		System.out.println(getPriority());
 		while(i<10)
 		{
 			b.withdrawMoney();
@@ -44,7 +44,7 @@ class Withdrawer extends Thread
 	{
 		try{
 		int i=0;
-		System.out.println(Thread.MAX_PRIORITY);
+		System.out.println(getPriority());
 		while(i<10)
 		{
 			b.depositMoney();
