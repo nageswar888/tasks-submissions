@@ -1,0 +1,51 @@
+<html>
+<head>
+<style>
+td, th,table  {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+    border-collapse: collapse;
+}
+</style>
+<script>
+function myFunction(){
+   var x = document.getElementById("id1").value;
+   
+  var y=x-1;
+ if((x<10) && (x>0)){
+    var cell = document.getElementById("mytable").getElementsByTagName("td");
+	
+    cell[y].style.backgroundColor = "red";
+	}
+	else
+	{
+	alert("given number is not present in the table");
+	}
+	}
+</script>
+</head>
+<body>
+<table id="mytable">
+<tr>
+<td >1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+</tr>
+</table><br></div>
+enter
+<input type ="text" name ="field" id="id1" ><br><br>
+<input type="submit" value="submit" onclick="myFunction()">
+
+</body>
+</html>
