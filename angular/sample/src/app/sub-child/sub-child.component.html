@@ -1,0 +1,21 @@
+<br>
+<br>
+<table align="center">
+   <tr>
+    <th>Name</th>
+    <th>Id</th>
+    <th>Phone</th>
+     <th>button</th>
+  </tr>
+  <tr *ngFor="let user of data">
+      <td>{{user.name}}</td>
+      <td >{{user.id}}</td>
+      <td>{{user.phone}}</td>
+    <td><button class="button" (click)="send(user)">button</button>
+  </tr>
+</table>
+
+<span *ngIf="array">
+      <app-user-details (someValue)="passValue($event)" [value]="array"></app-user-details>
+  </span>
+
