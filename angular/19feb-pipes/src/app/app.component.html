@@ -1,0 +1,24 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<table align="center">
+  <tr>
+    <th>Id</th>
+  <th>Name</th>
+    <th>Gender</th>
+    <th>Date</th>
+    <th>Sallary</th>
+    <th>Phone number</th>
+  </tr>
+  <tr *ngFor="let detail of details ">
+    <td>{{detail.id}}</td>
+    <td>{{detail.name|respect:detail.gender}}</td>
+    <td>{{detail.gender}}</td>
+    <td>{{detail.date| date:'MMMM d, y, h:mm a'}}</td>
+    <td>{{detail.salary|currency}}</td>
+    <td>{{detail.pho|phoneNumber}}</td>
+  </tr>
+</table>
