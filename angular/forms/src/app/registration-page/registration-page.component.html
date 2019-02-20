@@ -1,40 +1,94 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>First Name</label>
+
+
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit('')">
+  <table><tr>
+    <th><label>First Name</label></th><td>
     <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
     <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
       <div *ngIf="f.firstName.errors.required">First Name is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>father Name</label>
+    </div></td>
+  </tr>
+
+
+
+  <tr>
+   <th> <label>father Name</label></th><td>
     <input type="text" formControlName="fatherName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fatherName.errors }" />
     <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
-      <div *ngIf="f.fatherName.errors.required">Last Name is required</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Email</label>
+      <div *ngIf="f.fatherName.errors.required">father name is required</div>
+    </div></td>
+  </tr>
+
+  <tr>
+  <th>  <label>Email</label></th><td>
     <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
     <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
       <div *ngIf="f.email.errors.required">Email is required</div>
       <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-      <div *ngIf="f.password.errors.required">Password is required</div>
-      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-    </div>
-  </div>
-  <div class="form-group">
+    </div></td>
+  </tr>
+<tr>
+
+    <th><label>Personal address</label></th><td>
+    <input type="text" formControlName="padd" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.padd.errors }" />
+    <div *ngIf="submitted && f.padd.errors" >
+      <div *ngIf="f.padd.errors.required">Personal address is required</div>
+    </div></td>
+</tr>
+<tr>
+   <th> <label>Sex</label></th><td>male
+    <input type="radio" value="male" formControlName="gender"> Male
+    <input type="radio" value="female" formControlName="gender"> Female
+    <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+      <div *ngIf="f.gender.errors.required">gender is required</div>
+    </div></td>
+</tr>
+<tr><th>city</th><td>
+  <select formControlName="city">
+    <option  [value]="city" *ngFor="let city of countries">{{city}}</option>
+  </select></td></tr><tr>
+
+  <th>courses</th><td>
+  <select formControlName="course">
+    <option  [value]="course" *ngFor="let course of courses">{{course}}</option>
+  </select></td></tr><tr>
+
+      <th>districts</th><td>
+  <select formControlName="district">
+    <option  [value]="district" *ngFor="let district of districts">{{district}}</option>
+  </select></td></tr><tr>
+
+  <th>states</th><td>
+  <select formControlName="state">
+    <option  [value]="state" *ngFor="let state of states">{{state}}</option>
+  </select></td></tr><tr>
+
+
+  <th>  <label>Pincode</label></th><td>
+    <input type="number" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+    <div *ngIf="submitted && f.password.errors" >
+      <div *ngIf="f.password.errors.required">pincode is required</div>
+    </div></td></tr><tr>
+
+  <th>
+    <label>Mobile no</label></th><td>
+    <input type="number" formControlName="mobile" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+    <div *ngIf="submitted && f.mobile.errors" >
+      <div *ngIf="f.mobile.errors.required">mobile no is required</div>
+    </div></td>
+    </tr>
+
+  <tr>
+    <th><label>DOB</label></th>
+    <td><input type="date" formControlName="dob" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" />
+    <div *ngIf="submitted && f.dob.errors" >
+      <div *ngIf="f.dob.errors.required">dob  is required</div>
+    </div></td>
+  </tr>
+
     <button class="btn btn-primary">Register</button>
-  </div>
+
+  <input type="reset" value="reset">
+  </table>
 </form>
 
-
-<!-- credits -->
-<div class="text-center">
-  <p>
