@@ -1,0 +1,12 @@
+<div class="ds-u-clearfix pagination">
+  <p class="ds-u-float--right ds-u-padding--1">
+    <span class="page-counts">{{ 'min.max.label' | translate : {min:getMin(),max:getMax(),count:count} }}</span>
+    <span (click)="onPrev()" class="page-icons"  [class.disabled]="page==1">
+        <i class="mdi  mdi-chevron-left mdi-24px " aria-hidden="true"></i>
+      </span>
+
+      <span  class="" (click)="onNext()" class="page-icons" [class.disabled]="lastPage()">
+        <i class="mdi mdi-chevron-right mdi-24px " aria-hidden="true"></i>
+      </span>
+  </p>
+</div>

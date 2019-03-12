@@ -1,0 +1,209 @@
+<div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 ds-u-margin--0 compare-wrapper" *ngIf="comparedProviders.length>0">
+  <div class="ds-l-col--12 ds-u-padding--0">
+    <div class="header-div">
+      <div class="compare-header bg-blue-gradient banner-text-shadow ds-u-sm-padding-top--3 ds-u-lg-padding-top--6 ds-u-lg-padding-bottom--4" appSticky [stickMin]="450" [stickClass]="'sticky-search-results-header'">
+        <div class="back-to-results ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 ds-u-margin--0 ds-u-lg-padding-left--5
+        ds-u-lg-padding-right--5 ds-u-xl-padding-left--5 ds-u-xl-padding-right--5 ds-u-md-padding-left--5 ds-u-md-padding-right--5">
+          <div class="ds-u-display--flex">
+            <a class="white-font btn-link back-link" routerLink="/search-results">
+              <i class="mdi mdi-24px mdi-arrow-left ds-u-lg-margin-right--1"></i>
+              {{'label.back.search.results' | translate}}
+            </a>
+          </div>
+        </div>
+        <div class="ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block ds-u-md-display--block">
+          <div class="page-title-row ds-l-row ds-u-align-items--center ds-u-margin-left--0 ds-u-margin-right--0 ds-u-margin--0 ds-u-padding-left--5 ds-u-padding-right--5 ds-u-lg-margin-top--3 ds-u-lg-padding-bottom--6">
+            <div class="ds-l-col--8 ds-u-font-size--h1 white-font">
+              Comparing  <b class="dashed-blue-underline ds-u-lg-padding-bottom--1 cursor-pointer">{{comparedProviders.length}} {{staticProviderType}}</b> nearby
+            </div>
+            <div class="ds-l-col--4 ds-u-display--flex ds-u-justify-content--end">
+              <button class="provider-save-button btn-white">
+                <i class="mdi mdi-24px mdi-plus ds-u-lg-margin-right--1"></i>
+                {{'label.add.another.physician' | translate}}</button>
+            </div>
+          </div>
+        </div>
+        <div class="provider-comparison-row ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 ds-u-margin--0 ds-u-padding-left--5 ds-u-padding-right--5 ds-u-lg-padding-top--3">
+          <div class="ds-l-col--3 ds-l-lg-col ds-l-xl-col ds-l-md-col ds-u-align-items--center ds-u-display--flex empty-div">
+          </div>
+          <div *ngFor="let provider of comparedProviders"
+               class="ds-l-col">
+
+            <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 white-font">
+              <!--<div class="ds-l-col&#45;&#45;3 provider-type-icon">-->
+              <!--<i class="mdi mdi-stethoscope mdi-36px circle-icon-wrapper"></i>-->
+              <!--</div>-->
+              <div class="provider-column">
+                <div class="compare-row-label provider-name white-font ds-u-lg-margin-bottom--1" (click)="providerSelected(provider.ind_pac_id?provider.ind_pac_id:provider.ind_pac_id)">
+                  {{provider.name |  titlecase }}
+                </div>
+                <div class="provider-name-sub-details white-font ds-u-lg-margin-bottom--2">
+                  {{provider.primarySpeciality | titlecase}} <span *ngIf="provider.secondarySpeciality">,</span> {{provider.secondarySpeciality | titlecase}}
+                </div>
+                <div class="provider-actions">
+                <span class="ds-u-padding-right--2 ds-u-display--none ds-u-lg-display--inline-block ds-u-xl-display--inline-block ds-u-md-display--inline-block">
+                  <i class="mdi mdi-share-variant mdi-24px" matTooltip="{{'label.share.provider' | translate}}" [matTooltipPosition]="position"></i>
+                </span>
+                <span class="ds-u-padding-right--2 ds-u-display--none ds-u-lg-display--inline-block ds-u-xl-display--inline-block ds-u-md-display--inline-block">
+                  <i class="mdi mdi-heart-outline mdi-24px" matTooltip="{{'label.save.provider' | translate}}" [matTooltipPosition]="position"></i>
+                </span>
+                <span class="ds-u-padding-right--2 cursor-type">
+                  <i *ngIf="typeOfProvider=='Physician'" class="mdi mdi-delete-outline mdi-24px"
+                     (click)="remove(provider.ind_pac_id);"></i>
+                  <i *ngIf="typeOfProvider=='hospital'" class="mdi mdi-delete-outline mdi-24px"
+                     (click)="remove(provider.provider_id);"></i>
+                </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!--General Info Section-->
+    <div class="provider-details-row" id="target1">
+      <h2 class="right-line-heading"><span>{{'label.general.info' | translate}}</span></h2>
+    </div>
+    <div class="provider-details-wrapper" *ngIf="comparedProviders.length>0">
+      <div *ngFor="let label of generalInfoLabels; let i=index">
+        <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 compare-provider-row row-{{i%2}}">
+          <div class="ds-l-col provider-values-labels">
+            <div>{{label.label | translate}}</div>
+            <div *ngIf="label.subtitle" class="ds-u-margin-top--1"><a> {{label.subtitle | translate}}</a></div>
+          </div>
+          <div class="ds-l-col " *ngFor="let eachProvider of comparedProviders;" [ngSwitch]="label.type">
+            <div class="compare-provider-value" *ngSwitchCase="'address'" >
+              <span [outerHTML]="eachProvider[label.value] | newline"></span>
+              <div class="ds-u-margin-top--1"> {{eachProvider['distance']}} Miles </div>
+            </div>
+            <div *ngSwitchCase="'multi-value'">
+              <div *ngIf="eachProvider[label.value].length > 0">
+                <view-more [initLimit]="2" [viewList]="eachProvider[label.value]"></view-more>
+              </div>
+              <div class="compare-provider-value font-color-grey ds-u-font-style--italic"
+                   *ngIf="eachProvider[label.value].length == 0">
+                No {{label.label | translate}}
+              </div>
+            </div>
+            <div *ngSwitchCase="'rating'">
+              <rating [ngModel]="eachProvider[label.value]"
+                      [readonly]="true" style="font-size: 9px;"></rating>
+            </div>
+            <div class="compare-provider-value" *ngSwitchCase="'text'">
+              {{eachProvider[label.value] | titlecase}}
+            </div>
+            <div class="compare-provider-value compare-row-label" *ngSwitchCase="'phone'">
+              <span *ngIf="eachProvider[label.value].length > 2" class="ds-u-text-decoration--underline">
+                <a href="tel:{{eachProvider[label.value]}}">{{eachProvider[label.value]}}</a>
+              </span>
+              <span *ngIf="eachProvider[label.value].length < 2" class="font-color-grey ds-u-font-style--italic">
+                {{'label.not.available' | translate}} </span>
+            </div>
+            <span class="compare-provider-value" *ngSwitchCase="'lang'">
+              {{eachProvider[label.value] | langPipe}}
+            </span>
+            <div class="compare-provider-value" *ngSwitchDefault>
+              {{eachProvider[label.value]}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Ratings Section-->
+    <div class="provider-details-row" id="target2">
+      <h2 class="right-line-heading"><span>{{'label.ratings.measure' | translate}}</span></h2>
+    </div>
+    <div class="provider-details-wrapper"  *ngIf="comparedProviders.length>0">
+      <div *ngFor="let label of ratingLabels; let i=index">
+        <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 compare-provider-row row-{{i%2}}">
+          <div class="ds-l-col provider-values-labels">
+            {{label.label | translate}}
+          </div>
+          <div class="ds-l-col " *ngFor="let eachProvider of comparedProviders;" [ngSwitch]="label.type">
+            <span class="compare-provider-value  star-rating" *ngSwitchCase="'rating'">
+              <rating [ngModel]="eachProvider[label.value]"
+                      [readonly]="true" style="font-size: 12px;"></rating> <!--card.phy_measures | ratingFilter-->
+            </span>
+            <span class="compare-provider-value avg-cost" *ngSwitchCase="'cost'">
+                <rating [ngModel]="eachProvider[label.value]"
+                        [readonly]="true" style="font-size: 10px; "
+                        fullIcon="&#36;"
+                        emptyIcon="$"></rating>
+            </span>
+
+            <span class="compare-provider-value" *ngSwitchCase="'pie'">
+              <circle-progress
+                [percent]="eachProvider['overAllRating'] | ratingPercent"
+                [radius]="30"
+                [outerStrokeWidth]="10"
+                [outerStrokeColor]="eachProvider['overAllRating'] | percentColor"
+                [title]="percentage"
+                [titleColor]="overAllRating | percentColor"
+                [showSubtitle]="false"
+                [animation]="true"
+                [titleFontSize]="20"
+                [animationDuration]="200"
+              ></circle-progress>
+            </span>
+            <span class="compare-provider-value font-color-grey ds-u-font-style--italic"
+                 *ngIf="!eachProvider[label.value]">
+              {{'label.not.available' | translate}}
+            </span>
+            <span class="compare-provider-value" *ngSwitchDefault>
+              {{eachProvider[label.value] | titlecase}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--Capability details section -->
+
+    <div class="provider-details-row" id="target">
+      <h2 class="right-line-heading"><span>{{'label.cap.cred' | translate}}</span></h2>
+    </div>
+
+    <div class="provider-details-wrapper"  *ngIf="comparedProviders.length>0">
+      <div *ngFor="let label of capabilityLabels; let i=index">
+        <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 compare-provider-row row-{{i%2}}">
+          <div class="ds-l-col provider-values-labels">
+            {{label.label | translate}}
+          </div>
+          <div class="ds-l-col " *ngFor="let eachProvider of comparedProviders;" [ngSwitch]="label.type">
+            <div *ngSwitchCase="'multi-value'">
+              <div *ngIf="eachProvider[label.value] && eachProvider[label.value].length > 0">
+                <view-more [isLink]="false" [initLimit]="5" [viewList]="eachProvider[label.value]"></view-more>
+              </div>
+              <div class="compare-provider-value font-color-grey ds-u-font-style--italic"
+                   *ngIf="eachProvider[label.value].length == 0">
+                No {{label.label | translate}}
+              </div>
+            </div>
+            <div class="compare-provider-value" *ngSwitchCase="'qualifications'">
+              {{eachProvider[label.value]}}
+            </div>
+            <div *ngSwitchCase="'rating'">
+              <rating [ngModel]="eachProvider[label.value]"
+                      [readonly]="true" style="font-size: 9px;"></rating>
+            </div>
+            <div class="compare-provider-value font-color-grey ds-u-font-style--italic"
+                 *ngIf="!eachProvider[label.value]">
+              {{'label.none.listed' | translate}}
+            </div>
+            <div class="compare-provider-value" *ngSwitchCase="'text'">
+              {{eachProvider[label.value] | titlecase}}
+            </div>
+            <div class="compare-provider-value" *ngSwitchDefault>
+              {{eachProvider[label.value]}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="ds-l-col&#45;&#45;12 ds-l-sm-col&#45;&#45;12 ds-l-md-col&#45;&#45;12 ds-l-lg-col&#45;&#45;5 ds-l-xl-col&#45;&#45;5">
+    <app-map [markerAddresses]="markerAddresses" (mapClick)="mapExpand($event)"></app-map>
+  </div>-->
+</div>

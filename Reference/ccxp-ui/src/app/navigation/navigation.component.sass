@@ -1,0 +1,38 @@
+.navigation-header-lables
+  color: white
+  font-size: 16px
+  cursor: pointer
+  .selected-tab
+    padding-bottom: 24px
+    font-weight: bold
+    position: relative
+    &:after
+      content: ''
+      display: block
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      margin: 0 auto
+      width: 50%
+      height: 6px
+      background-color: white
+      border-radius: 4px
+      box-shadow: 0 5px 13px rgba(0,0,0,0.25)
+
+.wizard-container
+  min-height: calc(100vh - 84px)
+  .wizard-content-container
+    margin-top: 128px
+
+.provider-prefix-label
+  color: #043c60
+  font-weight: 500
+  font-family: 'Rubik'
+  font-size: 18px
+
+.radial-blue
+  background-image: url(/assets/images/herndon-lg.png), linear-gradient(to right, #0096d3, #0e3669)
+  background-position: center center
+  background-size: 75%, cover
+  background-repeat: no-repeat

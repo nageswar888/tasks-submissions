@@ -1,0 +1,7 @@
+<div class="ds-c-tabs" role="tablist" aria-label="Settings">
+  <a class="ds-c-tabs__item ds-l-col" *ngFor="let tab of tabs" (click)="selectTab(tab)"  role="tab"
+     [class.active]="tab.active" [class.disabled]="tab.disabled"><label class="tabTitle">{{tab.title}}</label></a>
+</div>
+<div class="">
+  <ng-content></ng-content>
+</div>

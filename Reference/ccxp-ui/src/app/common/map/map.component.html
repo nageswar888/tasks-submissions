@@ -1,0 +1,14 @@
+
+<div class="map ds-l-col--12 ds-u-padding--0" *ngIf="markers.length > 0">
+  <div style="height: 100vh;" class=""
+       leaflet
+       [leafletOptions]="options"
+       [(leafletCenter)]="mapCenter"
+       [(leafletZoom)]="mapZoom"
+       [leafletLayers]="markers"
+       (leafletMapReady)="onMapReady($event)">
+  </div>
+</div>
+
+
+

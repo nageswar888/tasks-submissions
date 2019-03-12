@@ -1,0 +1,11 @@
+<div class="ds-c-tabs" role="tablist" aria-label="Settings">
+  <a class="ds-c-tabs__item ds-l-col ds-u-align-items--center ds-u-justify-content--center ds-u-lg-text-align--center tabs-list" *ngFor="let tab of selectedTabs;let i=index"  (click)="selectTab(tab)" role="tab"
+     [class.active-tab]="tab.active">
+      <span class="ds-u-padding-left--1" *ngIf="selectedTabs">{{tab.label}}</span>
+
+  </a>
+</div>
+<div class="">
+  <ng-content></ng-content>
+</div>
+

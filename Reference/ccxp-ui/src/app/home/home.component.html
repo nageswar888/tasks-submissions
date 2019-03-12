@@ -1,0 +1,362 @@
+<div class="bg-blue-gradient ds-u-margin--0 ds-u-justify-content--center ds-u-lg-padding-bottom--7 ds-u-padding-top--1"
+     [ngClass]="{'provider-div': !providerOptionSelected}" *ngIf="!providerOptionSelected">
+  <div class="">
+    <div class="ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center ds-u-padding-bottom--4">
+      <div class="intro-text hero-text-shadow ds-u-md-font-size--display ds-u-sm-font-size--h1 white-font ds-l-xs-col--12 ds-l-md-col--11 ds-l-lg-col--8 ds-l-xl-col--7 ds-u-padding-top--3">
+        {{'label.find.health.provider' | translate}}
+        <b>{{'label.for.you' | translate}}</b>
+      </div>
+
+      <!--HOME SEARCH BAR-->
+      <div *ngIf="!providerOptionSelected" class="or-search-option ds-u-justify-content--center ds-l-xs-col--12 ds-l-md-col--11 ds-l-lg-col--11 ds-l-xl-col--10"><!--search-component or-search-option-->
+        <div class="home-search-bar">
+          <form [formGroup]="stepsForm" (ngSubmit)="submitForm(stepsForm.value);">
+            <div class="ds-l-row ds-u-xl-margin-left--7 ds-u-lg-margin-left--5 ds-u--margin-right--0 ds-u-md-margin-left--0 ds-u-sm-margin-left--0 ds-u-xs-margin-left--0 ds-u-align-items--center ds-u-text-align--center
+            ds-u-justify-content--center ">
+              <div class="search-fields-container ds-u-display--flex ds-u-md-margin-bottom--4">
+                <div class="ds-l-lg-col--11 ds-l-xl-col--11 search-fields">
+                  <div class="home-specialty ds-l-md-col--8 ds-l-lg-col--8 ds-u-lg-padding-left--0">
+                    <mat-form-field class="example-full-width specialty-auto-completer"  floatLabel="never">
+                      <span matPrefix class="ds-u-margin-left--2 prefix-label">SEARCH</span>
+                      <input matInput placeholder="{{'label.specialty.placeHolder' | translate}}" [matAutocomplete]="desltopSpecialty"
+                              [formControl]="stepsForm.controls['specialty']">
+                      <i matSuffix (click)="clear('specialty')" *ngIf="stepsForm.controls['specialty'].dirty && stepsForm.controls['specialty'].value"
+                         class="mdi mdi-close mdi-24px font-color-grey ds-u-margin-right--2 cursor-pointer"></i>
+                      <mat-autocomplete #desltopSpecialty="matAutocomplete" (optionSelected)="onOptionSelect($event)" [panelWidth]="700"><!--[panelWidth]=""-->
+                        <div class="home-specialty-autocompleter" *ngIf="showPanel">
+                          <auto-tab-set id="desktop">
+                            <auto-tab tabTitle="All">
+                              <mat-option *ngFor="let result of allResults" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize | searchTextBold: searchString"></span>
+                                <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none
+                                  ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.type | capitalize}}</span>
+                                <i [hidden]=true>id:{{result.id}}</i>
+                              </mat-option>
+                            </auto-tab>
+                            <auto-tab tabTitle="Specialty">
+                              <mat-option *ngFor="let result of specialtyList" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize |searchTextBold: searchString"></span>
+                              <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none
+                              ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.type | capitalize}}</span>
+                              </mat-option>
+                              <div *ngIf="specialtyList.length ==0" class="next-phase"> {{'label.no.specialties' | translate}}</div>
+                            </auto-tab>
+                            <auto-tab tabTitle="Physicians">
+                              <mat-option *ngFor="let result of providersList" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize |searchTextBold: searchString"></span>
+                              <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none
+                              ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.type | capitalize}}</span>
+                                <i [hidden]=true>id:{{result.id}}</i>
+                              </mat-option>
+                              <div *ngIf="providersList.length ==0" class="next-phase"> {{'label.no.physicians' | translate}}</div>
+                            </auto-tab>
+                            <auto-tab tabTitle="Condition" class="next-phase" disabled=true>
+                              <span>
+                                Will be implemented in next phase.
+                              </span>
+                            </auto-tab>
+                            <auto-tab tabTitle="Procedures" class="next-phase" disabled=true>
+                              <span>
+                                Will be implemented in next phase.
+                              </span>
+                            </auto-tab>
+                            <auto-tab tabTitle="Body Parts" class="next-phase" disabled=true>
+                              <span>
+                                Will be implemented in next phase.
+                              </span>
+                            </auto-tab>
+                          </auto-tab-set>
+                        </div>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+                  <div class="home-location ds-l-md-col--4 ds-l-lg-col--4"> <!--[ngClass]="{'has-error':!stepsForm.controls['location'].valid && invalid}"-->
+                    <mat-form-field class="example-full-width location-auto-completer"
+                                    floatLabel="never"><!--location-auto-completer-->
+                      <span matPrefix class="ds-u-margin-left--2 prefix-label">NEAR</span>
+                      <span  *ngIf="isLocateMeActive" class=" small-spinner">
+                        <div class="ispinner ispinner--animating ispinner--gray">
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                          <div class="ispinner__blade"></div>
+                        </div>
+                      </span>
+                      <input matInput placeholder="{{'label.city.zipCode' | translate}}" [matAutocomplete]="desktopLocation"
+                             [formControl]="stepsForm.controls['location']"
+                             (keyup)="getLocationResults($event)" id="location"  class="placeholder-fix location-input"><!-- required -->
+                      <i matSuffix (click)="clear('location')" *ngIf="stepsForm.controls['location'].dirty && stepsForm.controls['location'].value"
+                         class="mdi mdi-close mdi-24px font-color-grey ds-u-margin-right--1 cursor-pointer"></i>
+                      <i class="mdi mdi-crosshairs-gps icon mdi-24px" matTooltip="{{'label.locate' | translate}}"
+                         [matTooltipPosition]="position" matSuffix (click)="getLocation()"
+                         *ngIf="!stepsForm.controls['location'].dirty && !stepsForm.controls['location'].value"></i>
+                      <mat-autocomplete #desktopLocation="matAutocomplete" (optionSelected)="onLocationSelect($event)">
+                        <mat-option *ngFor="let result of locationResults" [value]="result.location_text +' '+result.zip_code ">
+                          <span>{{result.location_text | textLimit: 18}} </span>
+                          <span class="ds-u-float--right">{{result.zip_code}}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <label *ngIf="!stepsForm.controls['location'].valid && invalid" class="error-label">
+                      {{'label.location.required' | translate}}
+                    </label>
+                  </div>
+                </div>
+                <div class="search-button-wrapper ds-u-margin-left--2">
+                  <div class="round-search-button btn-primary" (click)="submitForm(stepsForm.value)">
+                    <i class="mdi mdi-magnify mdi-36px"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!--Mobile view-->
+              <div class="ds-u-lg-display--none ds-u-md-display--none ds-u-xl-display--none mobile-search-fields">
+                <div class="ds-l-row ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center">
+                  <div class="home-specialty-mobile">
+                    <mat-form-field class="example-full-width specialty-auto-completer"  floatLabel="never">
+                      <span matPrefix class="ds-u-margin-left--1 prefix-label">SEARCH</span>
+                      <input matInput placeholder="{{'label.specialty.placeHolder' | translate}}" [matAutocomplete]="mobileSpecialty"
+                              [formControl]="stepsForm.controls['specialty']" class="location-input">
+                      <i matSuffix (click)="clear('specialty')" *ngIf="stepsForm.controls['specialty'].dirty && stepsForm.controls['specialty'].value"
+                         class="mdi mdi-close mdi-24px font-color-grey ds-u-margin-right--2"></i>
+                      <mat-autocomplete #mobileSpecialty="matAutocomplete" (optionSelected)="onOptionSelect($event)"><!--[panelWidth]=""-->
+                        <div class="home-specialty-autocompleter ds-u-margin-left--0 ds-u-margin-right--0" *ngIf="showPanel">
+                          <auto-tab-set id="mobile">
+                            <auto-tab tabTitle="All">
+                              <mat-option *ngFor="let result of allResults" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize | searchTextBold: searchString"></span>
+                              <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none
+                              ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.type | capitalize}}</span>
+                              </mat-option>
+                            </auto-tab>
+                            <auto-tab tabTitle="Specialty">
+                              <mat-option *ngFor="let result of specialtyList" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize |searchTextBold: searchString"></span>
+                              <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none
+                              ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.type | capitalize}}</span>
+                              </mat-option>
+                              <div *ngIf="specialtyList.length ==0" class="next-phase"> {{'label.no.specialties' | translate}}</div>
+                            </auto-tab>
+                            <auto-tab tabTitle="Physicians">
+                              <mat-option *ngFor="let result of providersList" [value]="result.name | capitalize">
+                                <span [innerHtml]="result.name | capitalize |searchTextBold: searchString"></span>
+                                <span class="ds-u-float--right">{{result.type | capitalize}}</span>
+                                <i [hidden]=true>id:{{result.id}}</i>
+                              </mat-option>
+                              <div *ngIf="providersList.length ==0" class="next-phase"> {{'label.no.physicians' | translate}}</div>
+                            </auto-tab>
+                          </auto-tab-set>
+                        </div>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="home-location-mobile ds-u-margin-top--2"> <!--[ngClass]="{'has-error':!stepsForm.controls['location'].valid && invalid}"-->
+                    <mat-form-field class="example-full-width location-auto-completer"
+                                    floatLabel="never"><!--location-auto-completer-->
+                      <span matPrefix class="ds-u-margin-left--1 prefix-label">NEAR</span>
+                      <span  *ngIf="isLocateMeActive" class=" small-spinner">
+                  <div class="ispinner ispinner--animating ispinner--gray">
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                  </div>
+                  </span>
+                      <input matInput placeholder="{{'label.city.zipCode' | translate}}" [matAutocomplete]="mobileLocation"
+                             [formControl]="stepsForm.controls['location']"
+                             (keyup)="getLocationResults($event)" #location id=""><!-- required -->
+                      <i matSuffix (click)="clear('location')" *ngIf="stepsForm.controls['location'].dirty && stepsForm.controls['location'].value"
+                         class="mdi mdi-close mdi-24px font-color-grey ds-u-margin-right--1"></i>
+                      <i class="mdi mdi-crosshairs-gps icon mdi-24px ds-u-margin-right--1" matTooltip="{{'label.locate' | translate}}" [matTooltipPosition]="position" matSuffix (click)="getLocation()" *ngIf="!stepsForm.controls['location'].dirty && !stepsForm.controls['location'].value"></i>
+                      <mat-autocomplete #mobileLocation="matAutocomplete" (optionSelected)="onLocationSelect($event)">
+                        <mat-option *ngFor="let result of locationResults" [value]="result.location_text +' '+result.zip_code ">
+                          <span>{{result.location_text | textLimit: 18}} </span>
+                          <span class="ds-u-float--right">{{result.zip_code}}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <label *ngIf="!stepsForm.controls['location'].valid && invalid" class="error-label ds-u-margin-left--1">
+                      {{'label.location.required' | translate}}
+                    </label>
+                  </div>
+                </div>
+                <div class="ds-l-row ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center">
+                  <div class="provider-save-button btn-primary icon-left" (click)="submitForm(stepsForm.value)">
+                    <i class="mdi mdi-magnify mdi-24px ds-u-margin-right--1"></i> {{'label.search' | translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="ds-u-lg-margin-top--4 ds-u-lg-margin-bottom--1 ds-u-font-size--h3 white-font hero-text-shadow ds-u-font-weight--bold ds-u-padding-left--4 ds-u-padding-right--4" [innerHtml]="'label.not.sure' | translate"></div>
+      <div class="white-font hero-text-shadow ds-u-margin-top--1 ds-u-lg-margin-bottom--4 ds-u-padding-left--5 ds-u-padding-right--5" [innerHtml]="'label.start.by' | translate"></div>
+
+      <div class="provider-type-pills ds-u-margin-top--4 ds-u-margin-bottom--7 ds-l-row ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center ds-l-xs-col--12 ds-l-md-col--8 ds-l-lg-col--8 ds-l-xl-col--8">
+        <!-- Tiles -->
+        <div class="ds-l-col--12">
+          <div class="ds-l-row ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center">
+            <div *ngFor="let eachOption of providerOptions" (click)="onProviderSelect(eachOption)"
+                 class="search-type ds-l-col--auto">
+              <div class="provider-type-pill">
+                <mat-card [ngClass]="{'active-card': eachOption.selected}">
+                  <div class="ds-u-md-margin-left--1 ds-u-margin-right--1">
+                    <!--<img height="48" src="../../assets/Icons/Custom%20Icons/Export/{{eachOption.logo}}.svg"
+                           alt="logo">-->
+                    <i [ngClass]="eachOption.icon"></i>
+                  </div>
+                  <div class="search-label">
+                    {{eachOption.label}}
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="provider-save-button btn-primary" *ngIf="providersSelectedCount > 0" (click)="nextLevel()">
+          <span class="">{{'label.continue' | translate}}</span>
+          <i class="mdi mdi-arrow-right mdi-24px ds-u-margin-left--2"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Navigation pages-->
+<app-navigation *ngIf="providerOptionSelected" (autoCompleteValue)="getLocationResults($event)" (selectedNavigationObject)="navigationData($event)" (setGeoLocation)="onLocationSelect($event)" [locationResults]="locationResults"></app-navigation>
+
+<div class="ds-l-row other-ways ds-u-lg-margin--0" *ngIf="!providerOptionSelected">
+  <div class="ds-u-xs-display--none ds-l-sm-col--2 ds-l-md-col--2 ds-l-lg-col--2 ds-l-xl-col--2"></div>
+  <div class="ds-u-xs-col--12 ds-l-sm-col--8 ds-l-md-col--8 ds-l-lg-col--8 ds-l-xl-col--8 other-way-box">
+    <div class="ds-u-justify-content--center ds-u-margin-bottom--6 ds-u-margin-top--2">
+      <div class="text-navy ds-u-md-font-size--h2 ds-u-sm-font-size--h3 ds-u-font-weight--bold ds-u-text-align--center other-ways-header">{{'label.more.ways' | translate}}</div>
+    </div>
+
+    <div class="ds-l-row ds-u-justify-content--center  ds-u-text-align--center">
+      <div class="ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--4 ds-l-xl-col--4 other-cards">
+        <img height="120" src="../../assets/Icons/Custom%20Icons/Export/clipboard.svg" alt="icon">
+        <div class="ds-u-font-weight--bold ds-u-font-size--h4 text-navy ds-u-lg-margin-top--2 ds-u-lg-margin-bottom--2">
+          {{'label.preferred.provider.directory' | translate}}
+        </div>
+        <div class="other-card-content">
+          <div class="card-text-body">
+            {{'label.search.providers.participating.in.medicare.plan' | translate}}
+          </div>
+          <div class="ds-u-lg-font-size--small ds-l-row card-text-link ds-u-margin-top--1
+          ds-u-justify-content--center">
+            <a class = "motion-link">
+              {{'label.login.search' | translate}}
+              <i class="mdi mdi-arrow-right mdi-24px ds-u-lg-margin-left--1" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--4 ds-l-xl-col--4 other-cards">
+        <img height="120" src="../../assets/Icons/Custom%20Icons/Export/caduceus.svg" alt="icon">
+        <div class="ds-u-font-weight--bold ds-u-font-size--h4 text-navy ds-u-lg-margin-top--2 ds-u-lg-margin-bottom--2">
+          {{'label.browse.by.specialty' | translate}}
+        </div>
+        <div class="other-card-content">
+          <div class="card-text-body">
+            {{'label.choose.speciality' | translate}}
+          </div>
+          <div class="ds-u-lg-font-size--small ds-l-row card-text-link ds-u-margin-top--1 ds-u-justify-content--center">
+            <span class="ds-l-col--auto">
+              <a class = "motion-link">
+                {{'label.browse.specialty' | translate}}
+                <i class="mdi mdi-arrow-right mdi-24px ds-u-lg-margin-left--1" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--4 ds-l-xl-col--4 other-cards">
+        <img height="120" src="../../assets/Icons/Custom%20Icons/Export/body-parts.svg" alt="icon">
+        <div class="ds-u-font-weight--bold ds-u-font-size--h4 text-navy ds-u-lg-margin-top--2 ds-u-lg-margin-bottom--2">{{'label.body.part.vital' | translate}}</div>
+        <div class="other-card-content">
+          <div class="card-text-body">
+            {{'label.search.health.topics' | translate}}
+          </div>
+          <div class="ds-u-lg-font-size--small ds-l-row card-text-link ds-u-margin-top--1 ds-u-justify-content--center">
+            <span class="ds-l-col--auto">
+              <a class = "motion-link">
+                {{'label.search.by.body' | translate}}
+                <i class="mdi mdi-arrow-right mdi-24px ds-u-lg-margin-left--1" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ds-u-xs-display--none ds-l-sm-col--2 ds-l-md-col--2 ds-l-lg-col--2 ds-l-xl-col--2"></div>
+</div>
+
+<div class="ds-u-margin-left--0" *ngIf="!providerOptionSelected">
+  <div class="ds-l-row ds-u-margin--0 health-care-div">
+    <div class="ds-l-md-col--2 ds-l-sm-col--12"></div>
+    <div class="ds-l-md-col--8 ds-l-sm-col--12 ds-u-sm-padding--2 ds-u-sm-align-items--center">
+      <div class="ds-l-row">
+        <div class="ds-l-md-col--6 ds-l-sm-col--12"><div class="font-color-grey right-line-heading"><span>{{'label.our.mission' | translate}}</span></div></div>
+        <div class="ds-l-md-col--6 ds-l-sm-col--12">
+          <div class="text-navy jumbo-heading">{{'label.improving.health.care.quality'| translate}} <b>{{'label.improving.health.care.quality.bold'| translate}}</b></div>
+          <div class="font-color-grey improving-healthcare-desc"><p>
+            {{'label.message' | translate}}
+          </p>
+          </div>
+          <div class="ds-l-row ds-u-margin-left--0">
+            <span class="">
+              <a class="ds-u-text-decoration--none btn-primary">
+                <span>{{'label.learn.more' | translate}}</span>
+                <i class="mdi mdi-arrow-right mdi-24px ds-u-lg-margin-left--1" aria-hidden="true"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-l-md-col--2 ds-l-sm-col--12 ">
+      <div class="health-care-sm-div ds-u-md-display--none ds-u-lg-display--none ds-u-xl-display--none"></div>
+    </div>
+  </div>
+</div>
+<div class="ds-u-margin-left--0" *ngIf="!providerOptionSelected">
+  <div class="ds-l-row ds-u-margin--0 subscribe-div ds-u-sm-align-items--center ds-u-sm-padding--5">
+    <div class="ds-l-sm-col--12  ds-l-md-col--1"></div>
+    <div class="ds-l-sm-col--12 ds-u-sm-padding--2 ds-u-md-padding--0 ds-l-md-col--5">
+      <div class="ds-h2 ds-u-font-weight--bold white-font">{{'label.stay.in.loop' | translate}}</div>
+      <div class="ds-u-margin-bottom--2 ds-u-font-size--small white-font">{{'label.subscribe.to.our.newsletters' | translate}}</div>
+    </div>
+    <div class="ds-l-sm-col--12 ds-l-md-col--4 ds-u-sm-padding--2 ds-u-md-padding--0">
+      <div class="subscibe-field-div">
+        <input type="email" class="email-input subscribe-email ds-l-col--12"
+               placeholder="{{'enter.email.address' | translate}}"/>
+        <i class="mdi mdi-arrow-right font-color-blue"></i>
+      </div>
+    </div>
+    <div class="ds-l-col--2"></div>
+  </div>
+</div>
+
+
+
+

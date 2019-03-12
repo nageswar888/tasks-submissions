@@ -1,0 +1,98 @@
+<form [formGroup]="inputForm">
+  <div style="min-height: 450px;">
+    <div class="ds-c-dialog-wrap" aria-labelledby="dialog-title" role="dialog">
+      <div class="ds-c-dialog ds-c-dialog--wide" role="document">
+        <header class="dialog-header" role="banner">
+          <span class="mdi mdi-close mdi-36px dialog-close" *ngIf="modalObject.type=='auto-completer'" (click)="closeModal()"></span>
+          <div class="ds-l-row header-loction-selected" *ngIf="modalObject.type=='auto-completer2'">
+            <div>
+            <span> {{'label.searching' | translate}}
+            </span><a class="ds-u-text-decoration--underline edit-mode" >{{'lable.provider.type' | translate:{type:modalObject.provider} }}</a><i class="mdi mdi-pencil edit-mode" (click)="closeModal()"></i>
+            </div>
+            <div class="dialog-header-location">
+            <span class="label-near ">{{'label.near' | translate}}
+            </span><a class="ds-u-text-decoration--underline edit-mode" >
+              {{'label.selected.location' | translate: {location:modalObject.location} }}</a><i class="mdi mdi-pencil edit-mode" (click)="openLocationModal()"></i>
+
+            </div>
+            <div class="dialog-header-close">
+              <span  class="mdi mdi-close mdi-36px"  (click)="closeModal()"></span>
+            </div>
+          </div>
+        </header>
+
+        <div *ngIf="modalObject.type=='auto-completer2'" class="header-separator"></div>
+        <main role="main">
+          <div >
+            <div class="ds-l-row ds-u-justify-content--center ds-u-lg-text-align--center ds-u-align-items--center ds-u-lg-padding-top--4">
+              <span class="tile-label">{{modalObject.label |translate  }} <strong *ngIf="modalObject.type=='auto-completer'"> {{modalObject.id}} </strong></span><!--{{'label.type.provider'|translate:{type:modalObject.id} }}-->
+            </div>
+            <div class="ds-l-row ds-u-justify-content--center ds-u-lg-text-align--center ds-u-align-items--center ds-u-padding-top--1">
+              <span class="dialog-label" >{{modalObject.label2|translate}}</span>
+            </div>
+            <div class="ds-l-row modal-auto-complete search-component ds-u-justify-content--center ds-u-lg-text-align--center ds-u-align-items--center ds-u-padding-top--2" >
+
+              <div class="ds-l-col--1"></div>
+              <!--Location auto completer-->
+              <div class="ds-l-col--7 location">
+                <mat-form-field   class="dialog-modal-auto-complete auto-completer"  floatLabel="never" *ngIf="modalObject.type=='auto-completer'" >
+                  <input matInput placeholder="{{modalObject.placeHolder | translate}}" [matAutocomplete]="auto2"
+
+                         (keyup)="getLocationResults($event)" #location1 [formControl]="inputForm.controls['location']"><!-- required -->
+                  <button *ngIf="inputForm.controls['location'].hasError('required')" matSuffix type="button" class="modal-location-button ds-u-margin-top--1 ds-u-padding-left--0" (click)="getLocation()" tabindex="-1">
+                    <i class="mdi mdi-crosshairs-gps icon"></i> {{'label.locate' | translate}}
+                  </button>
+                  <i matSuffix (click)="clearData('location')" matSuffix *ngIf="!inputForm.controls['location'].hasError('required')" class="mdi mdi-close-circle-outline mdi-18px font-color-grey ds-u-margin-right--1"></i>
+                  <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="onLocationSelect($event)" >
+                    <mat-option *ngFor="let result of modalObject.results" [value]="result.location_text+' '+result.zip_code">
+                      <span>{{result.location_text | textLimit: 30}} </span>
+                  <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block
+                        ds-u-md-display--none ds-u-xl-display--inline-block ds-u-sm-display--none" >{{result.zip_code}}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              <div class="ds-l-col--1 ds-u-margin-bottom--2">
+                <span *ngIf="!inputForm.controls['location'].hasError('required') " class="check-icon">
+                <i class="mdi mdi-check mdi-24px"></i>
+                </span>
+              </div>
+
+              <!-- Specialty auto completer-->
+              <mat-form-field *ngIf="modalObject.type=='auto-completer2'"  class="example-full-width specialty-auto-completer"  floatLabel="never"><!--[ngClass]="{'input-focus': inputFocus}"-->
+                <input matInput placeholder="{{modalObject.placeHolder | translate}}" [matAutocomplete]="auto2"
+                       id="" (keyup)="loadSpecialties($event)" [formControl]="inputForm.controls['specialty']"><!--(focus)="inputFocus = !inputFocus" (blur)="inputFocus = !inputFocus"-->
+                <i matSuffix (click)="clearData('specialty')" *ngIf="inputForm.controls['specialty'].dirty && inputForm.controls['specialty'].value" class="mdi mdi-close-circle-outline mdi-18px font-color-grey ds-u-margin-right--1"></i>
+                <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="onProviderSelect($event)">
+                  <div class="specialty-autocompleter" *ngIf="showPanel">
+                    <div class="results-label">
+                      <a class="ds-l-col ds-u-text-decoration--underline" (click)="submitForm(inputForm.value)">{{'label.show.results' | translate}} <b>"{{searchString}}"</b></a>
+                    </div>
+                    <auto-tab-set *ngIf="modalObject.tabsetData.length>0">
+                      <auto-tab *ngFor="let tab of modalObject.tabsetData" tabTitle="{{tab.tabTitle}}">
+                        <mat-option *ngFor="let result of tab.results" [value]="result.name | capitalize">
+                          <!--<span>{{result.name | capitalize | textLimit: 30}}</span>-->
+                          <span [innerHtml]="result.name | capitalize |searchTextBold: searchString"></span>
+                          <i [hidden]=true>id:{{result.id}}</i>
+                        </mat-option>
+                      </auto-tab>
+                    </auto-tab-set>
+
+                  </div>
+                </mat-autocomplete>
+              </mat-form-field>
+            </div>
+          </div>
+        </main>
+        <aside  role="complementary" class="ds-u-padding-top--1 ds-u-justify-content--center ds-u-lg-text-align--center ds-u-align-items--center">
+          <button *ngIf="modalObject.type=='auto-completer'" class="ds-c-button dialog-continue-button" [class.modal-button-disabled]="inputForm.controls['location'].hasError('required')" (click)="setLocationProviders(inputForm.value,modalObject.id)">
+            <span>{{'label.continue'| translate}}</span> <i class="mdi mdi-arrow-right ds-u-padding-left--3 mdi-18px" ></i></button>
+          <button *ngIf="modalObject.type=='auto-completer2'" class="ds-c-button dialog-continue-button " (click)="search(inputForm.value.specialty)">
+            <span>{{'label.search'| translate}}</span> <i class="mdi mdi-arrow-right ds-u-padding-left--3 mdi-18px" ></i></button>
+        </aside>
+        <aside *ngIf="modalObject.type=='auto-completer2'" class="browse-label ds-u-justify-content--center ds-u-lg-text-align--center ds-u-align-items--center"><a class="ds-u-text-decoration--underline">
+          {{'label.browse' | translate }}</a></aside>
+      </div>
+    </div>
+  </div>
+</form>

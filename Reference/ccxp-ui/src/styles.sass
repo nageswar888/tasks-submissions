@@ -1,0 +1,2406 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/@cmsgov/design-system-layout/dist/index.css"
+@import "../node_modules/@cmsgov/design-system-core/dist/index.css"
+@import "../node_modules/mdi/css/materialdesignicons.min.css"
+@import "../node_modules/@mdi/font/css/materialdesignicons.min.css"
+@import "../node_modules/leaflet/dist/leaflet.css"
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css"
+@import "../node_modules/font-awesome/css/font-awesome.css"
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 300
+  font-style: normal
+  src: url('/assets/Fonts/Rubik/Rubik-Light.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 300
+  font-style: italic
+  src: url('/assets/Fonts/Rubik/Rubik-LightItalic.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 400
+  font-style: normal
+  src: url('/assets/Fonts/Rubik/Rubik-Regular.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 400
+  font-style: italic
+  src: url('/assets/Fonts/Rubik/Rubik-RegularItalic.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 500
+  font-style: normal
+  src: url('/assets/Fonts/Rubik/Rubik-Medium.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 500
+  font-style: italic
+  src: url('/assets/Fonts/Rubik/Rubik-MediumItalic.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 700
+  font-style: normal
+  src: url('/assets/Fonts/Rubik/Rubik-Bold.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 700
+  font-style: italic
+  src: url('/assets/Fonts/Rubik/Rubik-BoldItalic.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 900
+  font-style: normal
+  src: url('/assets/Fonts/Rubik/Rubik-Black.ttf') format('truetype')
+
+@font-face
+  font-family: 'Rubik'
+  font-weight: 900
+  font-style: italic
+  src: url('/assets/Fonts/Rubik/Rubik-BlackItalic.ttf') format('truetype')
+
+
+$grey: rgba(0, 0, 0, 0.5)
+$app-color-blue: #3AB5E5
+$app-color-light-blue: #a5ddf3
+$font-color-blue: #0071BC
+$font-color-green: #98CCA7
+
+
+body
+  font-family: 'Rubik', sans-serif
+  font-size: 14px
+  color: #222
+  overflow-x: hidden
+
+
+
+a, button, input, textarea
+  transition: all 0.2s linear
+
+a
+  cursor: pointer
+
+
+.nav-tabs
+
+  .ds-c-tabs
+
+    .ds-c-tabs__item
+      border-bottom: none
+      border-left: none
+      border-top: none
+      color: #366380
+      font-weight: normal
+      font-size: 14px
+      display: flex
+      align-items: center
+      padding: 30px 20px
+
+      .mdi
+        color: #ACBFCB
+
+    .ds-c-tabs__item:last-child
+      border-right: none
+.cursor-pointer
+  cursor: pointer
+.banner-text-shadow
+  text-shadow: 0 5px 13px rgba(0,0,0,0.2)
+.mdi-32px
+  font-size: 32px
+.menu-icon
+  color: #888
+.footer
+  position: absolute
+  bottom: 0
+  width: 100%
+  height: 170px
+  color: $grey
+  border-top: 1px solid #ccc
+  background-color: white
+  .logo
+    position: relative
+    height: 100px
+    width: 100px
+    left: 10%
+    top: 10%
+  .circle
+    width: 2em
+    height: 2em
+    text-align: center
+    line-height: 2em
+    border-radius: 100%
+    border: 1px solid rgba(0,0,0,.3)
+    display: inline-block
+    position: relative
+
+div.content-section
+  min-height: 100%
+  padding: 0
+  margin: 0
+  position: relative
+div.content-section::after
+  content: ''
+  display: block
+  height: 170px
+html
+  height: 100%
+body
+  min-height: 100%
+  padding: 0
+  margin: 0
+  position: relative
+  background-color: #f7f7f7
+
+.header
+  background-color: #FFFFFF
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2)
+  z-index: 1
+  position: relative
+  .title
+    margin-left: 8px
+    font-size: 35px
+    font-weight: 700
+    color: $grey
+    border-bottom: 1px solid $grey
+  .app-search
+    margin-bottom: 5px
+
+@media screen
+  .auto-completer
+    width: 100%
+  .location-auto-completer
+    width: 100%
+  .specialty-auto-completer
+    width: 100%
+@media screen and (min-width: 767px)
+  .auto-completer
+    width: 100%
+  .location-auto-completer
+    width: 100%
+  .specialty-auto-completer
+    width: 100%
+
+@media screen and (min-width: 1024px)
+  .auto-completer
+    width: 100%
+  .location-auto-completer
+    width: 100%
+  .specialty-auto-completer
+    width: 100%
+
+@media screen and (min-width: 1280px)
+  .auto-completer
+    width: 100%
+  .location-auto-completer
+    width: 100%
+  .specialty-auto-completer
+    width: 100%
+
+.margin-top-3
+  margin-top: 3px
+.margin-top-10
+  margin-top: 10%
+
+.label
+  color: $grey
+
+.home-search-button
+  margin-top: -2px
+  margin-left: 20px
+  padding: 7px 25px
+
+.app-search-bar
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(left, rgba(73,155,234,1) 38%, rgba(73,155,234,1) 39%, rgba(42,132,230,1) 63%, rgba(32,124,229,1) 71%, rgba(32,124,229,1) 100%)
+  background: -webkit-gradient(left top, right top, color-stop(38%, rgba(73,155,234,1)), color-stop(39%, rgba(73,155,234,1)), color-stop(63%, rgba(42,132,230,1)), color-stop(71%, rgba(32,124,229,1)), color-stop(100%, rgba(32,124,229,1)));
+  background: -webkit-linear-gradient(left, rgba(73,155,234,1) 38%, rgba(73,155,234,1) 39%, rgba(42,132,230,1) 63%, rgba(32,124,229,1) 71%, rgba(32,124,229,1) 100%)
+  background: -o-linear-gradient(left, rgba(73,155,234,1) 38%, rgba(73,155,234,1) 39%, rgba(42,132,230,1) 63%, rgba(32,124,229,1) 71%, rgba(32,124,229,1) 100%)
+  background: -ms-linear-gradient(left, rgba(73,155,234,1) 38%, rgba(73,155,234,1) 39%, rgba(42,132,230,1) 63%, rgba(32,124,229,1) 71%, rgba(32,124,229,1) 100%)
+  background: linear-gradient(to right, rgba(73,155,234,1) 38%, rgba(73,155,234,1) 39%, rgba(42,132,230,1) 63%, rgba(32,124,229,1) 71%, rgba(32,124,229,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#207ce5', GradientType=1 )
+
+.search-bar-button
+  color: white
+  padding: 7px 10px
+  background-color: transparent
+  background-repeat: no-repeat
+  border: none
+  cursor: pointer
+  &:focus
+    outline: none
+  .icon
+    color: #0AA4D1
+  margin-top: 5px
+  // padding: 7px 10px
+
+.continue-button
+  margin-top: 96%
+  margin-left: 15%
+  padding: 15px 25px
+
+.phy-card
+  padding: 30px
+  border: 1px solid #ccc
+  border-radius: 5px
+  margin: 20px 50px
+  text-align: center
+
+.search-type
+  padding: 10px
+
+  .provider-type-pill
+    text-shadow: 0 5px 15px rgba(0,0,0,0.1)
+
+    i
+      opacity: .5
+      font-size: 32px
+
+  .mat-card
+    padding: 5px 30px 5px 18px
+    color: white
+    background-color: transparent
+    border: 2px solid white
+    border-radius: 100px
+    display: flex
+    align-items: center
+    color: white
+    transition: all 0.2s linear
+
+    &:not([class*=mat-elevation-z])
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1), inset 0 5px 15px rgba(0,0,0,0.1)
+  .mat-card.active-card
+    background-color: #fff
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1)
+    text-shadow: none
+    color: #0971aa
+
+  &:hover
+    cursor: pointer
+    // box-shadow: 0 3px 1px -2px rgba(0,0,0,.5), 0 2px 2px 0 rgba(0,0,0,.20), 0 1px 5px 0 rgba(0,0,0,.20)
+.search-label
+  font-weight: 500
+  font-family: 'Rubik'
+
+.each-card
+  border: 2px solid transparent
+  font-size: 14px
+  background-color: #fff
+  border-radius: 10px
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15)
+  transition: box-shadow 0.3s ease-in-out
+  margin-bottom: 20px
+  .card-number
+    margin-right: -20px
+.each-card.active-card
+  border: 2px solid #00A6D2
+.ds-c-button.compare-button
+  padding: 10px 0px
+  font-size: 12px
+  background-color: white
+  color: $font-color-green
+  border: 1px solid $font-color-green
+  border-radius: 20px
+  &:hover
+  border: 1px solid $font-color-green
+  color: $font-color-green
+  &:focus
+  outline: none
+
+
+
+.filter-button
+  background-color: white
+  border: 1px solid rgba(0, 0, 0, 0.30) !important
+
+.previous-button
+  margin-left: 5%
+  cursor: pointer
+  margin-top: 5%
+  //margin-top: 2%
+  .page-buttons
+    //margin-top: 30px
+  .pagination-button
+    margin-top: 30px
+    background-color: white
+    border: 1px solid rgba(0, 0, 0, 0.4) !important
+    border-radius: 0px
+    font-size: 16px
+    color: #7f7f7f
+    &:focus
+      outline: none
+.next-button
+  cursor: pointer
+  margin-top: 5%
+
+.calendar-text
+  font-size: 10px
+  margin-top: 0.5em
+  margin-left: -0.1em
+  transform-origin: 0 0
+.div-icon
+  width: 25px
+  height: 25px
+.compare-card-component
+  margin-top: -4%
+.compare-card
+  border: 1px solid rgba(0, 0, 0, 0.30)
+  margin-top: 10px
+  padding: 15px 0px
+  background-color: #F7F7F7
+  font-size: 10px
+
+.compare-font-name
+  font-size: 11px
+  color: dimgray
+  margin-top: 7px
+.compare-labels
+  border: 1px solid grey
+  border-radius: 5px
+  margin-right: 1%
+  background-color: white
+  cursor: pointer
+  padding: 5px 10px
+.selected-name
+  // margin-top: 6%
+.clear-button
+  margin-top: 8px
+  cursor: pointer
+  font-size: 13px
+.compare-provider-button
+  font-size: 13px
+  padding: 10px
+  background-color: $app-color-blue
+  border: none
+  border-radius: 20px
+  &:focus
+  outline: none
+  color: white
+  cursor: pointer
+.button.ds-c-button.compare-provider-button:focus,button.ds-c-button.compare-provider-button:hover
+  color: white
+  background-color: $app-color-blue
+.compare-provider-button.ds-c-button:disabled
+  background-color: $app-color-light-blue
+  border: none
+  color: white
+.compare-provider-button-label
+  color: dimgray
+  //font-size: 10px
+
+.disabled
+  cursor: not-allowed
+  opacity: 0.4
+  background-image: none
+  background-color: white
+  pointer-events: none
+.page-button
+  margin-right: 3%
+.list-item-active
+  background-color: #7f7f7f !important
+  color: white !important
+
+
+.search-component
+  margin-bottom: 5px
+.location-button
+  display: table
+  color: $grey
+  padding: 2px 8px
+  // margin-right: 5px
+  background-color: transparent
+  background-repeat: no-repeat
+  border: none
+  cursor: pointer
+  &:focus
+    outline: none
+  .icon
+    color: #0AA4D1
+.modal-location-button
+  display: table
+  color: $grey
+  padding: 2px 8px
+  // margin-right: 5px
+  background-color: transparent
+  background-repeat: no-repeat
+  border: none
+  cursor: pointer
+  &:focus
+    outline: none
+  &:hover
+    outline: none
+    color: #205493
+  .icon
+    color: #0AA4D1
+
+
+.card-header
+  border: 2px solid rgba(0, 0, 0, 0.30)
+  background-color: #F8F8F8
+  padding: 6px 0px
+  font-size: 13px
+  font-weight: 600
+  color: $grey
+.search-results
+  margin-left: 15px
+  margin-top: 15px
+  margin-right: 15px
+  .ds-c-field
+    &:focus
+      outline: none
+
+.filter-results
+  label
+    font-size: 14px
+    font-weight: 600
+    color: $grey
+  .ds-c-field
+    &:focus
+      outline: none
+      box-shadow: none
+  .drop-down
+    font-size: 13px
+    border: 1px solid rgba(0, 0, 0, 0.30)
+    border-radius: 0px
+    color: $grey
+    &:focus
+      outline: none
+
+.search-component
+  .input-focus
+    .mat-form-field-flex
+      border: 1px solid #2b81af
+  .mat-form-field
+    font-size: 16px
+  .mat-form-field-infix
+    margin: 5px 15px 4px 15px
+    border-top: 0px
+    border-radius: 25px
+    &:focus
+      border: 1px solid red
+  .mat-option-text
+    font-size: 15px
+  .mat-input-element
+    font-size: 15px
+  .mat-form-field.mat-focused
+    .mat-form-field-ripple
+      background-color: rgba(0,0,0,0)
+  .mat-form-field-appearance-legacy .mat-form-field-underline
+    background-color: rgba(0, 0, 0, 0)
+.search-header
+  color: white
+  display: flex
+  @media screen and (min-width: 767px)
+    flex: 1 0 auto
+  .ds-l-row
+    display: flex
+    align-items: center
+    justify-content: space-between
+    flex: 1 0 auto
+  .search-container
+    display: flex
+    align-items: center
+
+  .search-options
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+    .modify-search
+      display: flex
+      align-items: center
+      margin-right: 20px
+
+    .ds-u-border-right--1
+      border-color: white
+      opacity: .5
+      margin: 0 15px
+      padding: 15px 0
+
+    .recent-searches
+      display: flex
+      align-items: center
+      margin-left: 20px
+    i.mdi
+      font-size: 24px
+      margin-right: 10px
+.results-filters
+  #provider-filter
+  .input-focus
+    .mat-form-field-flex
+      border: 1px solid #2b81af
+  .mat-form-field
+    width: 90%
+    font-size: 13px
+    .mat-form-field-wrapper
+      padding: 0
+  .mat-form-field-infix
+    border-top: 0px
+    padding: 0
+    .mat-form-field-label-wrapper
+      font-size: 14px
+      font-weight: 500
+      padding: 0
+      left: 24px
+      top: -2px
+      font-family: 'Rubik'
+      .mat-form-field-label
+        color: #1B75BC
+        box-shadow: none
+    .mat-select
+      box-sizing: border-box
+      display: flex
+      align-items: center
+      padding: 0 16px 0 24px
+      height: 45px
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1)
+      border-radius: 100px
+      .mat-select-trigger
+        //display: flex
+        //flex: 1 0 auto
+        //justify-content: space-between
+        .mat-select-value
+          color: #1B75BC
+          font-size: 14px
+        .mat-select-arrow-wrapper
+          display: flex
+          align-items: center
+          .mat-select-arrow
+            color: $app-color-blue
+            border-width: 6px
+  .mat-form-field-flex
+    background-color: white
+    border-radius: 32px
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+  .mat-option-text
+    font-size: 15px
+  .mat-input-element
+    font-size: 15px
+  .show-map-inner
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    height: 100%
+    .search-label
+      margin-right: 16px
+      font-size: 16px
+      font-weight: 400
+// For all material form fields remove underline
+.mat-form-field.mat-focused
+  .mat-form-field-ripple
+    background-color: rgba(0,0,0,0)
+.mat-form-field-appearance-legacy .mat-form-field-underline
+  background-color: rgba(0, 0, 0, 0)
+  .mat-form-field-hide-placeholder .mat-select-placeholder
+    // color: #00b7ff
+  .mat-select-value-text
+    // color: #00b7ff
+.input-label
+  display: table
+  color: #5b616b
+  font-size: 10px
+  font-weight: 600
+.return-page
+  background-color: white
+  border: 1px solid rgba(0, 0, 0, 0.4) !important
+  border-radius: 0px
+  font-size: 16px
+  color: #7f7f7f
+  &:focus
+    outline: none
+    color: #7f7f7f
+  &:hover
+    color: #7f7f7f
+.btn-remove
+  font-size: 10px
+//.btn-remove
+//  padding-right: 15px
+//  font-size: 14px
+//  padding-left: 6px
+.return-to-list
+  margin-top: -5%
+  cursor: pointer
+  color: #7f7f7f
+  &:focus
+    outline: none
+    color: #7f7f7f
+  &:hover
+    color: #7f7f7f
+.map-div
+  // padding-left: 48px
+  padding-right: 32px
+.map-height
+  margin-top: 5%
+.active-tab
+  border-bottom: 3px solid #3ab5e5
+.is-active
+  border-bottom: 3px solid #3ab5e5
+  font-weight: bold
+  padding: 9px 0px
+  color: black
+.provider-detail
+  cursor: pointer
+  padding-right: 50px
+  color: $app-color-blue
+  font-size: 15px
+.mapExpand
+  margin-left: 36%
+
+.email
+  margin-top: 0%
+  color: grey
+.email-label
+  margin-left: 50%
+.bottom-row
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3)
+  padding-bottom: 2px
+.provider-label
+  font-size: 18px
+  font-weight: bolder
+.compare-names
+  padding: 7px 2px
+  font-size: 13px
+.provider-name-sub-details
+  font-size: 13px
+  opacity: .65
+.save-provider
+  background-color: #7f7f7f
+  color: white
+  font-size: 13px
+  margin: 5%
+  text-align: center
+  padding: 6px 14px
+
+.saveProvider
+  margin-left: -2%
+.compare-row-label.phy-title
+  cursor: pointer
+  color: white
+
+.general-info-row
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  background-color: #7f7f7f
+  color: white
+  margin-left: 2%
+  margin-top: 3%
+  padding: 2px
+  .label
+    margin-left: -379px
+    color: white
+.provider-values-labels
+  font-weight: 500
+  color: #112E50
+.provider-values
+  margin-top: 2%
+  margin-left: 2%
+  font-size: 12px
+//.compare-provider-value
+//  font-size: 12px
+//  font-weight: 600
+.index-row
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3)
+  margin-top: 1%
+  margin-left: 1.5%
+.compare-value-rating
+  margin-top: 2%
+  margin-left: 0%
+  font-size: 12px
+  color: #7f7f7f
+.close
+  margin-left: 35%
+  margin-top: -11%
+.affiliated-hospital
+  margin-top: 2%
+  color: #7f7f7f
+  font-size: 12px
+.save-provider-label-value
+  margin-left: 5%
+.save-provider-label
+  color: #205493
+.map-save-provider
+  padding: 6px 9px
+.save-provider-values
+  margin-top: 2%
+.remove-labels
+  margin-left: 1%
+  text-align: center
+  font-size: 12px
+  color: #7f7f7f
+  cursor: pointer
+  .ds-u-text-decoration--underline
+    color: #7f7f7f
+    &:focus
+      outline: none
+      color: #7f7f7f
+    &:hover
+      color: #7f7f7f
+
+
+.remove-label
+  margin-top: 1%
+  color: grey !important
+.remove-comparision
+  font-size: 12px
+  cursor: pointer
+  text-align: center
+
+.remove-comparision-label
+  margin-left: -3%
+.ds-u-padding-left--2, .ds-u-padding-x--2
+  color: #7f7f7f
+  &:focus
+    outline: none
+    color: #7f7f7f
+  &:hover
+    color: #7f7f7f
+  cursor: pointer
+
+
+.font-color-red
+  color: red
+.font-color-grey
+  color: $grey
+.font-color-lgrey
+  color: #ccc
+.font-color-dblue
+  color: #143153
+.font-color-blue
+  color: $font-color-blue
+
+.step
+  display: none
+.step-form
+  width: 80%
+  .previous-button, .next-button, .see-results
+    padding: 8px 12px
+    background-color: #6F6F70
+    color: white
+    border: none
+    border-radius: 0px
+    &:focus
+      outline: none
+      color: white
+      background-color: #7f7f7f
+    &:hover
+      color: white
+      background-color: #7f7f7f
+
+.font-15
+  font-size: 15px
+.font-12
+  font-size: 12px
+.font-13
+  font-size: 13px
+#see-results
+  display: none
+.search-bar
+  //mat-select
+    margin-left: 35px
+    width: 0px
+    margin-top: 30px
+    box-shadow: none
+    transform-origin: none
+  .mat-form-field
+    width: 250px
+  .mat-form-field-flex
+    background-color: white
+  .ds-l-col--3
+    max-width: 100%
+
+//.cdk-overlay-connected-position-bounding-box
+//  background: rgba(0,0,0,0.5) !important
+
+  .cdk-overlay-pane
+
+.mat-option-text
+  .ds-u-float--right
+    opacity: .5
+
+.mat-select-panel:not([class*=mat-elevation-z])
+  margin-left: 20px
+  width: 0px
+  margin-top: 42px
+  box-shadow: none
+  transform-origin: none
+.mat-primary .mat-pseudo-checkbox-checked
+  color: rgba(0,0,0,.54)
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled)
+  color: rgba(0,0,0,.54)
+.mat-select-arrow
+  margin: 0px 10px
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate
+  background: rgba(0,0,0,.54)
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate
+.mat-pseudo-checkbox.mat-pseudo-checkbox-checked, .mat-pseudo-checkbox.mat-pseudo-checkbox-indeterminate
+  border-color: rgba(0,0,0,.54)
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow
+  color: rgba(0,0,0,.54)
+.mat-pseudo-checkbox::after
+  color: white
+
+.check-box
+  margin-top: -10px
+//.mat-card-content>:first-child, .mat-card>:first-child
+//  margin-top: -15px
+.row-label
+  margin-left: 1%
+
+.compare-accordians
+  color: white
+  background-color: #112E51
+  .mat-expansion-panel-header.mat-expanded:focus
+    color: white
+    background-color: #112E51
+  .mat-expansion-panel-header.mat-expanded:hover
+    color: white
+    background-color: #112E51
+  .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover
+    color: white
+    background-color: #112E51
+  .mat-expansion-panel
+    border-radius: 5px
+  .mat-expansion-panel-header
+    margin: 0
+    border-radius: 5px
+    background-color: #112E51
+    color: #fff
+    border-top: 1px solid #ccc
+    border-left: 1px solid #ccc
+    border-right: 1px solid #ccc
+  .mat-expansion-panel-header.mat-expanded
+    border-bottom: 1px solid #ccc
+    background-color: #112E51
+    color: #fff
+  .mat-expansion-panel-body
+    background-color: #f2f2f2
+.row
+  width: 100%
+  margin: 0 auto
+  .block:first-child
+    width: 10%
+    display: inline-block
+  .block:last-child
+    width: 90%
+    display: inline-block
+.acc-header
+  .header-desc
+    width: 80%
+  .header-count
+    width: 35px
+.compare-close
+  float: right
+  margin-top: -14px
+  margin-right: -16px
+  color: #ff4d4d
+  background: transparent
+.provider-placeholder
+  text-align: center
+  padding: 20px
+  color: $grey
+.ccxp-spinner
+  width: 40px
+  height: 40px
+  top: 30%
+  left: 50%
+  position: fixed
+  margin: 100px auto
+  z-index: 1001
+/* Transparent Overlay */
+.ccxp-spinner:before
+  content: ''
+  display: block
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+.auto-completer.has-error, .location-auto-completer.has-error
+  border: none
+  .mat-form-field-flex
+    border: 1px solid  #ff4d4d
+  .mat-form-field-label
+    //color:  #ff4d4d
+  .mat-form-field.mat-form-field-invalid .mat-form-field-label
+    //color: #ff4d4d
+.no-data
+  // position: absolute
+  //left: 45%
+  margin-top: 10%
+  color: $grey
+  font-size: 18px
+
+  //position: absolute
+  //left: 50%
+  //top: 50%
+  //text-align: center
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple, .mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent
+  // background-color: transparent
+.mat-form-field.mat-form-field-invalid .mat-form-field-label
+  // color: transparent
+
+.mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element
+  caret-color: rgba(0,0,0,.3)
+.mat-input-element, .mat-form-field-label
+  caret-color: rgba(0,0,0,.3)
+.provider-close
+  float: right
+  margin-top: -39px
+  margin-right: -25px
+  color: #ff4d4d
+  background: transparent
+.ccxp-font-12
+  font-size: 12px
+
+.pagination
+  margin: 0 32px
+  display: flex
+  align-items: center
+  justify-content: flex-end
+.page-counts
+  color: #707070
+  font-size: 14px
+  margin-right: 12px
+.page-icons
+  cursor: pointer
+  display: inline-block
+  margin-left: 8px
+  border-radius: 6px
+  background-color: white
+  width: 32px
+  height: 32px
+  text-align: center
+  line-height: 30px
+  border: 1px solid rgba(0,0,0,.3)
+  .mdi
+    color: $app-color-blue
+
+.pagination-drop-down
+  font-size: 13px
+  margin-right: 0px
+  margin-top: -4px
+  .drop-down
+    font-size: 12px
+    border: 1px solid rgba(0, 0, 0, 0.30)
+    border-radius: 3px
+    color: $grey
+    &:focus
+      outline: none
+  //padding: 7px 7px
+.provider-save
+  background-color: white
+  color: gray
+  font-size: 13px
+  text-align: center
+  padding: 6px 18px
+  border: 1px solid rgba(0, 0, 0, 0.30)
+  border-radius: 5%
+.provier-name
+  font-size: 13px
+  color: gray
+.provider-row
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3)
+  padding-bottom: 9px
+.row-header
+  margin-top: 19px
+  color: gray
+  font-size: 14px
+.provider-value
+  font-size: 12px
+  margin-top: 6%
+  margin-left: 0%
+  color: grey
+.provider-speciality
+  font-size: 10px
+  margin-left: 31%
+  color: grey
+  margin-top: -3%
+.provider-phone
+  font-size: 12px
+  color: #7f7f7f
+  margin-top: 5%
+.provider-lables
+  margin-top: 8%
+  margin-left: 3%
+  font-weight: bolder
+  font-size: 12px
+  color: gray
+.row-line
+  border-bottom: 1px solid rgba(0, 0, 0, 1.3)
+  padding-bottom: 9px
+
+//.tab-list-data
+  border: 1px solid rgba(0, 0, 0, 0.30)
+  align-items: center
+  padding: 9px 15px
+  font-weight: 100
+  font-size: 12px
+  background-color: lightgray
+  &:focus
+  outline: none !important
+  color: #7f7f7f !important
+.active
+  border-bottom: #3AB5E5
+  background-color: white
+
+
+.nav-tabs.header-links
+  .ds-c-tabs
+    .ds-c-tabs__item
+      // margin-right: 5px
+      // font-size: 18px
+      //color: #acbeca
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7db9e8+12,2989d8+41,207cca+49,1e5799+66,1e5799+81 */
+.bg-blue-gradient
+  background: #005A8C
+  background: linear-gradient(to right, #0096D3 0%, #0E3669 100%)
+.bg-blue-center-gradient
+  background: rgba(73,155,234,1)
+  background: -moz-radial-gradient(center, ellipse cover, rgba(73,155,234,1) 0%, rgba(14,54,105,1) 100%)
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(14,54,105,1)))
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(73,155,234,1) 0%, rgba(14,54,105,1) 100%)
+  background: -o-radial-gradient(center, ellipse cover, rgba(73,155,234,1) 0%, rgba(14,54,105,1) 100%)
+  background: -ms-radial-gradient(center, ellipse cover, rgba(73,155,234,1) 0%, rgba(14,54,105,1) 100%)
+  background: radial-gradient(ellipse at center, rgba(73,155,234,1) 0%, rgba(14,54,105,1) 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#0e3669', GradientType=1 )
+
+.subscribe-div
+  padding: 50px 0
+  background: #005A8C
+
+
+.other-ways
+  margin-bottom: 40px
+.white-font
+  color: #fff
+
+.subscibe-field-div
+  position: relative
+  .mdi
+    position: absolute
+    right: 15px
+    top: 5px
+    font-size: 32px
+    cursor: pointer
+    transition: all 0.2s linear
+    padding: 10px
+
+    &:hover
+      color: #005A8C
+      transform: translateX(4px)
+
+.subscribe-email
+  padding: 24px
+  border: none
+  border-radius: 6px
+  font-size: 14px
+  &:focus
+    outline: none
+
+.home-subscribe-button
+  margin-left: 2%
+  padding: 10px 25px
+  background-color: #3AB5E5
+  color: white
+  border: none
+  border-radius: 30px
+  font-size: 19px
+  font-weight: bold
+  &:focus
+    outline: none
+    color: white
+    background-color: #7f7f7f
+  &:hover
+    color: white
+    background-color: #7f7f7f
+.footer-links
+  padding: 5px 25px 5px 0
+  display: inline-block
+.footer-top
+  padding-bottom: 15px
+  width: 100%
+  border-bottom: 1px solid #ccc
+.other-cards
+.other-card-header
+  padding: 10px
+.other-card-content
+  @media screen and (min-width: 768px)
+    padding: 10px 46px
+  line-height: 1.7
+
+.dialog-header
+  margin-top: -6%
+.dialog-close
+  margin-left: 97%
+  color: lightgray
+  cursor: pointer
+.tile-label
+  font-size: 25px
+.dialog-label
+  color: lightgray
+.modal-auto-complete
+  .location
+    .mat-form-field
+      width: 100%
+  //margin-left: 14%
+  //margin-top: 2%
+  &:focus
+    color: #3AB5E5
+.dialog-modal-auto-complete
+  width: 250px
+  color: black
+
+.dialog-location-button
+  margin-left: -36%
+  color: #3AB5E5
+  cursor: pointer
+.dialog-continue-button
+  padding: 11px 35px
+  background-color: #3AB5E5
+  color: white
+  border: none
+  border-radius: 30px
+  font-size: 19px
+  font-weight: bold
+  cursor: pointer
+  &:focus
+    outline: none
+    color: white
+    background-color: #3AB5E5
+  &:hover
+    color: white
+    background-color: #3AB5E5
+.dialog-modal
+  .ds-c-dialog--wide
+    border-radius: 11px
+.modal-button-disabled
+  cursor: not-allowed
+  opacity: 0.4
+  background-image: none
+  background-color: grey
+  color: white
+  pointer-events: none
+.locate-label
+  font-size: 15px
+  margin-left: 2%
+  &:focus
+    outline: none
+    color: #205493
+    background-color: white
+  &:hover
+    color: #205493
+    background-color: white
+.remove-button
+  color: lightgrey
+  margin-top: -4%
+  cursor: pointer
+.check-icon
+  margin-top: -3%
+  color: greenyellow
+.dialog-header-location
+  margin-left: 3%
+.dialog-header-close
+  margin-top: -42px
+  margin-left: 95%
+  color: lightgray
+  cursor: pointer
+.header-loction-selected
+  margin-top: 3%
+  font-size: 15px
+  color: #205493
+.header-separator
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3)
+  margin-left: -5%
+  margin-right: -5%
+.tile-label-location
+  margin-left: 7%
+  font-size: 22px
+  margin-top: 3%
+.dialog-label-location
+  margin-left: 20%
+  color: lightgray
+  margin-top: 1%
+.edit-mode
+  cursor: pointer
+.browse-label
+  cursor: pointer
+.specialty-autocompleter
+  .results-label
+    padding-top: 5px
+    padding-bottom: 5px
+    // color: #0c83f1
+    .ds-u-text-decoration--underline
+      // color: #0c83f1
+
+  .mat-option
+    border-bottom: 1px solid #d6d7d9
+  .ds-c-tabs__panel
+    padding: 0px
+  .ds-c-tabs__item
+    font-size: 13px
+    text-align: center
+    border-left: none
+    font-weight: 500
+    color: #186994
+    padding: 16px 10px
+  .ds-c-tabs__item.active
+    border-bottom: 3px solid #3ab5e5
+
+
+//.tabs
+  .ds-c-tabs__item.active
+    border-bottom: 3px solid #3ab5e5
+
+.location-auto-completer, .specialty-auto-completer
+  .mat-form-field-wrapper
+    padding-bottom: 0
+.error-label
+  padding-top: 5px
+  display: block
+  color: #ff4d4d
+  font-size: 12px
+  font-weight: 500
+
+
+.home-location
+  .error-label
+    margin-left: 80px
+    padding-top: 0
+
+.mat-autocomplete-panel::-webkit-scrollbar-track
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+
+.mat-autocomplete-panel::-webkit-scrollbar
+  width: 10px
+
+.mat-autocomplete-panel::-webkit-scrollbar-thumb
+  padding: 5px
+  width: 2px
+  height: 50px
+  background-color: rgba(0,0,0,.3)
+  background-clip: padding-box
+
+.mat-autocomplete-panel:not([class*=mat-elevation-z])
+  box-shadow: 0 7px 9px rgba(0,0,0,0.25)
+
+.mat-autocomplete-panel.mat-autocomplete-visible
+  margin-top: 15px
+  border-radius: 5px 5px
+  border-top: none
+.mat-form-field-ripple
+  display: none
+
+.item-color
+  color: $app-color-blue
+  .mdi-chevron-right
+    margin-top: -5px
+
+.provider-header
+  padding: 0px 0px
+.provider-body-header
+  padding: 0px 0px
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  padding-bottom: 23px
+.provider-body-header-label
+  padding-top: 23px
+.provider-component
+  margin-top: 24px
+.save-provider-button
+  padding-right: 63px
+.provider-save-button,
+.round-search-button
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+
+.btn-primary
+  border-radius: 100px
+  border: none
+  padding: 16px 35px 16px 45px
+  color: white
+  font-size: 14px
+  font-weight: 500
+  text-align: center
+  margin: 30px 0
+  cursor: pointer
+  display: flex
+  align-items: center
+  background: #0da4d1
+  transition: all 0.2s linear
+
+  &.icon-left
+    padding-left: 35px
+  i
+    position: relative
+    transition: all 0.2s linear
+
+  &:hover
+    background: #0290cc
+    color: white
+    i
+      transform: translateX(4px)
+
+.btn-white
+  background: white
+  border-radius: 100px
+  padding: 10px 25px 10px 15px
+  color: #267cbf
+  font-weight: 500
+  text-align: center
+  cursor: pointer
+  display: flex
+  align-items: center
+  font-size: 14px
+  font-family: 'Rubik'
+  border: none
+  transition: all 0.2s linear
+
+  &:focus
+    outline: none
+
+  &:hover
+    background: #ffdc89
+    color: #205493
+
+.btn-link
+  font-weight: 500
+  text-align: center
+  cursor: pointer
+  display: flex
+  align-items: center
+  font-size: 14px
+  font-family: 'Rubik'
+  text-decoration: none
+  position: relative
+
+  &:before
+    content: ""
+    background: rgba(255,255,255,0.2)
+    left: -20px
+    top: -10px
+    bottom: -10px
+    right: -25px
+    border-radius: 100px
+    position: absolute
+    opacity: 0
+    transition: all 0.2s linear
+    z-index: 0
+
+  &:hover
+    &:before
+      opacity: 1
+
+  &:focus
+    color: white
+
+  &.white-font
+    &:hover
+      color: white
+
+  &.back-link
+    i
+      position: relative
+      transition: all 0.2s linear
+
+    &:hover
+      i
+        transform: translateX(-4px)
+
+.mobile-search-fields
+  .btn-primary
+    i
+      transform: none !important
+
+.round-search-button
+  padding: 0
+  width: 64px
+  height: 64px
+  justify-content: center
+  margin: 0
+  i
+    transition: none !important
+
+  &:hover
+    i
+      transform: none !important
+
+
+.dashed-blue-underline
+  border-bottom: 2px dashed #00b7e0
+
+  &:hover
+    border-bottom-style: solid
+
+.circle-icon-wrapper
+  width: 64px
+  height: 64px
+  display: flex
+  align-items: center
+  justify-content: center
+  text-shadow: none
+  background: rgba(255,255,255,0.2)
+  border-radius: 100%
+  box-shadow: 0 5px 13px rgba(0,0,0,0.1)
+
+.provider-type
+  font-size: 13px
+  color: gray
+.tabs-list
+  color: $app-color-blue
+  &:hover
+    color: $app-color-blue
+    background-color: white
+.phy-title
+  color: $font-color-blue
+  font-weight: 500
+  cursor: pointer
+  font-size: 24px
+  margin-bottom: 8px
+  transition: all .2s linear
+  &:hover
+    color: $app-color-blue
+.provider-name
+  color: $font-color-blue
+  font-weight: 500
+  cursor: pointer
+  font-size: 20px
+  &.white-font
+    color: white !important
+
+.mdi-green-color
+  color: $font-color-green
+.card-content-title
+  color: #707070
+  font-size: 12px
+  margin-bottom: 8px
+.provider-body
+  padding: 0px 0px
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  margin-bottom: 19px
+.provider-body-row
+  margin-left: 44px
+  margin-right: 37px
+.general-info-body-row
+  margin-left: 14px
+  margin-right: 13px
+.provider-body-values
+  padding-bottom: 18px
+.provider-body-labels
+  padding-top: 18px
+  font-size: 14px
+  color: gray
+.provider-body-value
+  padding-top: 18px
+  font-size: 12px
+  font-weight: 700
+  padding-left: 67px
+.cursor-type
+  cursor: pointer
+.locations-count
+  padding-top: 12px
+.location-values
+  padding-top: 32px
+  font-size: 12px
+.location-row
+  margin-top: 23px
+
+.get-directions-button
+  border-radius: 23px
+  padding: 6px 17px
+  border: 1px solid #186994
+  background-color: white
+  color: #186994
+  font-size: 16px
+  text-align: center
+.get-direction
+  padding-top: 23px
+.stethoscope
+  padding-left: 23px
+.not-data-found
+  color: gray
+.results-div
+  .ds-c-tabs__item.active
+    border-bottom: 3px solid #3ab5e5
+    color: #222
+  .ds-c-tabs, .ds-c-tabs__panel
+    border-bottom: none
+    border-left: none
+    border-right: none
+  .ds-c-tabs__panel
+    padding: 32px 0
+    background-color: #f7f7f7
+  .ds-c-tabs__item
+    font-size: 13px
+    text-align: center
+    font-weight: 500
+    color: #186994
+    padding: 16px 15px
+
+.header-row
+  padding-bottom: 11px
+.general-info
+  color: $app-color-blue
+  cursor: pointer
+  font-size: 15px
+.compare-provider-row
+  padding: 35px 20px 35px 45px
+.compare-provider-row.row-1
+  background-color: white
+.compare-provider-save-button
+  border-radius: 23px
+  padding: 2px 10px
+  border: 1px solid #3ab5e5
+  background-color: white
+  color: $app-color-blue
+  font-size: 13px
+  text-align: center
+.provider-details-row
+  background-color: #FFF
+  border-right: none
+  padding: 35px 61px
+  color: #405773
+  font-size: 20px
+
+.circle
+  width: 1.5em
+  height: 1.5em
+  text-align: center
+  line-height: 1.5em
+  border-radius: 100%
+  border: 1px solid rgba(0,0,0,.3)
+  display: inline-block
+  position: relative
+  .mdi.mdi-chevron-left.mdi-24px
+    color: $app-color-blue
+.results-text-div
+  margin: 20px 0px 18px 0px
+.selected-provider-div
+  background-color: #F8F8F8
+  border-top: 1px solid rgba(0,0,0,.3)
+  color: rgba(0,0,0,.7)
+  font-weight: bold
+.mat-select-arrow
+  color: $app-color-blue
+.hospital-affiliation
+  color: #267cbf
+  font-weight: 500
+  cursor: pointer
+.pri-spec
+  font-size: 14px
+  font-weight: 500
+  cursor: pointer
+  color: #323A45
+  margin-bottom: 12px
+.miles
+  font-size: 14px
+  font-weight: 400
+  color: #323A45
+
+// Navigation
+
+// Header copy
+.each-tab-label1
+  padding-top: 96px
+  font-size: 32px
+  color: white
+  margin-bottom: 8px
+.each-tab-label2
+  font-size: 32px
+  color: white
+  font-weight: bold
+
+$auto-complete-font-size: 18px
+
+.navigation-component
+  .mat-form-field-wrapper
+    padding-bottom: 0px
+  .input-focus
+  .mat-form-field-flex
+  .mat-form-field
+    //font-size: 16px
+  .mat-form-field-infix
+    font-size: 18px
+    margin: 0 16px 0 24px
+    border-top: 0
+    border-radius: 25px
+    width: 100%
+    .mat-select-arrow
+      border-width: 8px
+  .mat-form-field-flex
+    //border: 1px solid rgba(0, 0, 0, 0.30)
+    &:focus
+      border: 1px solid red
+  .mat-option-text
+    font-size: 15px
+  input.mat-input-element
+  //margin-left: 5px
+  .mat-input-element
+    font-size: $auto-complete-font-size
+  .mat-form-field.mat-focused
+    .mat-form-field-ripple
+      background-color: rgba(0,0,0,0)
+  .mat-form-field-appearance-legacy .mat-form-field-underline
+    background-color: rgba(0, 0, 0, 0)
+  .mat-form-field#provider-filter
+    width: 165px
+  .mat-form-field-appearance-legacy
+    .mat-form-field-label
+      color: rgba(0,0,0,.3)
+
+.navigation-auto-complete-row
+  padding-top: 86px
+  padding-bottom: 64px
+.navgation-continue-button
+  padding-top: 14px
+.navigation-auto-complete
+  padding: 25px
+  align-items: center
+  background-color: white
+  border-radius: 6px
+  display: flex
+  text-align: left
+  box-shadow: 0 9px 17px rgba(0, 0, 0, 0.2)
+  width: 100%
+  .mat-form-field-hide-placeholder .mat-select-placeholder
+    color: rgba(0,0,0,.87)
+  .mat-select-value
+    color: rgba(0,0,0,.87)
+    .mat-select-arrow-wrapper
+      .mat-select-arrow
+        color: $app-color-blue
+
+.distance-select
+  border-right: 1px solid #E0E0E0
+  padding-right: 16px
+  margin-right: 32px
+  display: flex
+  align-items: center
+  .mat-form-field-wrapper
+    font-size: $auto-complete-font-size
+.location-select
+  display: flex
+  align-items: baseline
+  .dialog-modal-auto-complete
+    .mat-form-field-flex
+      display: flex
+      align-items: center
+      .modal-location-button
+        padding: 0
+    .mdi-close
+      line-height: 24px
+      font-size: 24px
+.provider-options--desktop
+  display: flex
+  flex-direction: column
+  .white-font
+    display: flex
+    align-items: center
+    font-size: 18px
+    font-weight: 500
+    margin-bottom: 8px
+    .mdi
+      margin-right: 16px
+.provider-options--mobile
+  display: flex
+  flex-direction: column
+  .white-font
+    display: flex
+    align-items: center
+    font-size: 16px
+    font-weight: 500
+    width: 60%
+    margin: 0 20%
+    margin-bottom: 8px
+    .mdi
+      margin-right: 12px
+.navigation-distance-auto-complete
+  background-color: white
+  color: #323A45
+  border: 1px solid white
+  border-radius: 5px
+  padding: 16px
+  margin-bottom: 20px
+.navigation-location-auto-complete
+  background-color: white
+  color: black
+  border: 1px solid white
+  border-radius: 5px
+  padding: 16px
+  margin-bottom: 20px
+.details-tab-labels
+  color: white
+.white-font
+  > .ds-l-row
+    display: flex
+    align-items: center
+    .mdi
+      margin-right: 24px
+    .navigate-option
+      font-weight: 500
+      font-size: 20px
+
+.ds-u-font-weight--bold
+  font-weight: 500 !important
+
+
+.right-line-heading
+  margin-top: 20px
+  overflow: hidden
+  font-size: 20px
+  font-weight: 500
+  span
+    padding-right: 20px
+    position: relative
+    &:after
+      content: ""
+      position: absolute
+      height: 5px
+      border-top: 1px solid #aaa
+      width: 2000px
+      left: 100%
+      top: 12px
+
+.provider-details-row
+  .right-line-heading
+    font-size: 2rem
+    span
+      &:after
+        top: 50%
+
+.home-search-bar
+
+  .mat-form-field-flex
+    align-items: center
+
+  .mat-form-field
+    font-family: 'Rubik'
+
+  .mat-form-field-label-wrapper
+    left: 10px
+    top: -8px
+    @media screen and (max-width: 767px)
+      top: -4px
+
+  .mat-form-field-appearance-legacy
+    .mat-form-field-label
+      color: rgba(0,0,0,.3)
+
+  .search-fields-container
+    padding: 0 20px
+    flex-grow: 1
+
+    @media screen and (max-width: 767px)
+      display: none !important
+
+
+  .search-fields
+    background-color: white
+    border-radius: 6px
+    padding: 15px
+    display: flex
+    text-align: left
+    box-shadow: 0 9px 17px rgba(0,0,0,0.2)
+
+  .home-specialty
+    .mdi-magnify
+      color: #043c60
+    border-right: 1px solid #ccc
+  .icon
+    color: #0AA4D1
+    cursor: pointer
+
+  .mat-form-field-prefix
+    .prefix-label
+      color: #043c60
+      font-weight: 500
+      font-family: 'Rubik'
+      font-size: 18px
+
+  .home-specialty-mobile
+    background: white
+    padding: 5px
+    border-radius: 6px
+    width: 100%
+    box-shadow: 0 9px 17px rgba(0, 0, 0, 0.2)
+    .prefix-label
+      color: #205493
+      font-size: 14px
+      font-weight: 500
+  .home-location-mobile
+    width: 100%
+    background: white
+    padding: 5px
+    border-radius: 6px
+    box-shadow: 0 9px 17px rgba(0, 0, 0, 0.2)
+
+    .prefix-label
+      color: #205493
+      font-size: 14px
+      font-weight: 500
+    .icon
+      color: #0AA4D1
+
+  .input-focus
+    .mat-form-field-flex
+  //border: 1px solid #2b81af
+  .mat-form-field
+    font-size: 16px
+  .mat-form-field-infix
+    margin: 5px
+    border-top: 0px
+    padding: 15px 0
+    font-size: 18px
+
+    @media screen and (max-width: 767px)
+      font-size: 15px
+
+  .mat-form-field-flex
+    //border: 1px solid rgba(0, 0, 0, 0.30)
+    // background-color: white
+    // border-radius: 5px
+    &:focus
+  //border: 1px solid red
+  .mat-option-text
+    font-size: 15px
+  input.mat-input-element
+    margin-left: 10px
+  .mat-input-element
+    font-size: 18px
+
+    @media screen and (max-width: 767px)
+      font-size: 15px
+
+  .mat-form-field.mat-focused
+    .mat-form-field-ripple
+      background-color: rgba(0,0,0,0)
+  .mat-form-field-appearance-legacy .mat-form-field-underline
+    background-color: rgba(0, 0, 0, 0)
+
+
+.home-specialty-autocompleter
+  #desktop
+    .ds-c-tabs
+      //position: fixed
+      //width: 690px
+  #mobile
+    .ds-c-tabs
+      //position: fixed
+      //width: 255px
+  .ds-c-tabs
+    z-index: 1000
+    border-top: 1px solid #ccc
+  .ds-c-tabs .ds-c-tabs__panel
+    border: none
+  .mat-option
+    border-bottom: none
+    font-family: 'Rubik'
+
+  .results-label
+    padding-top: 5px
+    padding-bottom: 5px
+    // color: #0c83f1
+    .ds-u-text-decoration--underline
+  // color: #0c83f1
+  .next-phase
+    padding: 15px
+    font-weight: 600
+    font-style: italic
+    color: $app-color-blue
+    .ds-c-tabs__panel
+      padding: 15px
+      font-weight: 600
+      font-style: italic
+      color: $app-color-blue
+
+  .ds-c-tabs__panel
+    padding: 0px
+    border-left: none
+    border-right: none
+    border-bottom: none
+  .ds-c-tabs__item
+    opacity: 1
+    border: none
+    text-align: center
+    font-weight: 500
+    color: $grey
+    padding: 16px 0px
+    border-bottom: 1px solid #cccccc
+  .disabled
+    color: rgba(0,0,0,.2)
+  .ds-c-tabs__item.active
+    color: white
+
+    .tabTitle
+      padding: 5px 15px
+      background-color: #0da4d1
+      border-radius: 100px
+.nav-right
+  float: right
+  margin-right: 6px
+  margin-top: -45px
+  position: relative
+  z-index: 2
+.other-way-box
+  background-color: #fff
+  margin-top: -70px
+  border-radius: 6px
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1)
+  padding: 40px
+  margin-bottom: 100px
+
+.text-navy
+  color: #043c60
+.hero-text-shadow
+  text-shadow: 0 8px 15px rgba(0,0,0,0.3)
+.results-table-controls
+  display: flex
+  align-items: center
+  justify-content: space-between
+  margin-bottom: 24px
+
+  .sort-by
+    display: flex
+    justify-content: flex-end
+    .sort-by-container
+      display: flex
+      justify-content: flex-end
+      align-items: center
+    .mat-select
+      .mat-select-value
+        font-size: 14px
+    .mat-form-field-wrapper
+      padding: 0
+
+.count-label
+  font-size: 14px
+  font-weight: 500
+  color: #707070
+.sort-label
+  font-size: 14px
+  color: #707070
+  margin-right: 8px
+  white-space: nowrap
+
+.mobile-sort-filters
+  margin-bottom: 24px
+  display: flex
+  align-items: baseline
+
+.sort-by-filter
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  .mat-form-field
+    .mat-select-value-text
+      font-size: 14px
+    .mat-form-field-wrapper
+      padding: 0
+
+#sort-filter
+  .mat-form-field-infix
+    border: none
+    font-size: 13px
+    font-weight: 600
+    .mat-select-value
+      color: $font-color-blue
+
+.grey-border-right
+  border-right: 1px solid #e0e0e0
+.quality-sm-div
+  border-top: 1px solid lightgrey
+  padding-top: 15px
+  margin-top: 15px !important
+.compare-cards
+  position: fixed
+  bottom: 20px
+  color: white
+  background-color: #112E51
+  margin: 0
+  border-radius: 6px
+  padding: 16px 48px
+  z-index: 1000
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3)
+  display: flex
+  align-items: center
+  min-height: 72px
+
+  .compare-count
+    width: 1.8em
+    height: 1.8em
+    text-align: center
+    line-height: 1.8em
+    border-radius: 100%
+    border: 1.5px solid white
+    display: inline-block
+    position: relative
+    font-size: 20px
+  .compare-text
+    font-weight: 500
+    font-size: 20px
+    display: flex
+    align-items: baseline
+    flex-grow: 1
+    .suggestion
+      font-size: 14px
+      font-weight: 400
+      margin-left: 12px
+      opacity: .6
+  .compare-button
+    color: white
+    background-color: transparent
+    border-radius: 23px
+    padding: 10px 32px
+    border: 1.5px solid white
+    font-weight: 500
+    font-size: 14px
+    text-align: center
+    cursor: pointer
+    transition: all 0.2s linear
+    &:focus
+      outline: none
+    &:hover
+      background: white
+      color: #112E51
+
+
+.search-results-search-bar
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  width: 100%
+  padding: 48px 64px 32px
+
+  // background: rgba(73,155,234,1)
+  // background: -moz-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(1,84,138,1) 100%)
+  // background: -webkit-gradient(left top, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(1,84,138,1)))
+  // background: -webkit-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(1,84,138,1) 100%)
+  // background: -o-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(1,84,138,1) 100%)
+  // background: -ms-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(1,84,138,1) 100%)
+  // background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(1,84,138,1) 100%)
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#01548a', GradientType=1 )
+
+  .search-label
+    color: white
+    .search-container
+      display: flex
+      align-items: center
+  @media screen and (min-width: 767px)
+    .results-filters
+      flex: 1 0 auto
+  .result-text
+    font-weight: 400
+    font-size: 28px
+  .dotted
+    font-weight: 500
+    padding-bottom: 3px
+    border-bottom-width: 2px
+    border-bottom-style: dashed
+    border-bottom-color: $app-color-blue
+  .router-link
+    cursor: pointer
+    &:focus
+    outline: none
+
+
+// toggle button
+.switch
+  position: relative
+  display: inline-block
+  width: 60px
+  height: 32px
+
+.switch input
+  display: none
+
+.slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #ccc
+  -webkit-transition: .4s
+  transition: .4s
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+.slider:before
+  position: absolute
+  content: ""
+  height: 26px
+  width: 26px
+  left: 4px
+  bottom: 3px
+  background-color: #777
+  -webkit-transition: .4s
+  transition: .4s
+
+input:checked + .slider:before
+  -webkit-transform: translateX(26px)
+  -ms-transform: translateX(26px)
+  transform: translateX(26px)
+
+input:checked + .slider
+  background-color: white
+  &:before
+    background-color: $app-color-blue
+
+.slider.round
+  border-radius: 34px
+
+.slider.round:before
+  border-radius: 50%
+
+.physician-details
+  padding-left: 76px
+.physician-name
+  font-weight: 600
+.physician-value
+  font-size: 14px
+.group-practice-label
+  font-weight: 600
+  font-size: 12px
+  padding-top: 8px
+.value-service
+  font-weight: 600
+.service-label
+  font-size: 12px
+.language-value
+  font-size: 10px
+.insurance-check-icon
+  color: green
+.physician-ratings
+  border: 1px solid gray
+.rating-average
+  font-size: 10px
+  color: green
+.ratings-heading
+  font-weight: 600
+.rating-office-average
+  color: red
+  font-size: 10px
+.section-separator
+  border: 1px solid gray
+
+.sticky-search-results-header
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 1000
+
+.leaflet-top, .leaflet-bottom
+ z-index: 800
+
+.card-div
+  .mat-form-field-infix
+    width: 120px
+
+.leaflet-top
+  .leaflet-control
+    margin-top: 24px
+
+.leaflet-left
+  .leaflet-control
+    margin-left: 24px
+
+.leaflet-control
+  a
+    border: none
+
+.leaflet-touch
+  .leaflet-bar
+    border: none
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2)
+    a
+      color: #707070
+      &:hover
+        border: none
+      &:first-child
+        border-top-left-radius: 4px
+        border-top-right-radius: 4px
+      &:last-child
+        border-bottom-left-radius: 4px
+        border-bottom-right-radius: 4px
+
+
+
+.map-sticky
+  position: fixed
+  right: 0
+  top: 0
+  padding-right: 32px
+  padding-left: 48px
+
+.view-less
+  cursor: pointer
+
+.mat-tooltip
+  /* your own custom styles here */
+  /* e.g. */
+  background-color: rgba(0,0,0,0.85)
+  color: white
+  border-radius: 100px !important
+  padding: 10px 20px !important
+  font-family: 'Rubik'
+  font-size: 14px
+.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline
+  background-image: none
+
+.ispinner
+  //position: relative
+  //width: 20px
+  //height: 20px
+  .ispinner__blade
+    position: absolute
+    left: 30.5%
+    top: 37%
+    width: 3px
+    height: 10px
+    border-radius: 50% / 20%
+    animation: iSpinnerBlade 1s linear infinite
+    animation-play-state: paused
+    @for $i from 1 through 12
+      &:nth-child(#{$i})
+        animation-delay: 1s / 12 * ($i - 21)
+        transform: rotate(#{360deg / 12 * $i}) translate(0, -150%)
+  &.ispinner--animating
+    .ispinner__blade
+      animation-play-state: running
+  &.ispinner--white
+    .ispinner__blade
+      background-color: white
+  &.ispinner--gray
+    .ispinner__blade
+      background-color: #8c8c8c
+  &.ispinner--large
+    width: 35px
+    height: 35px
+    .ispinner__blade
+      width: 100% / 35 * 3
+      height: 100% / 35 * 9
+      border-radius: 50% / 16.67%
+
+@keyframes iSpinnerBlade
+  0%
+    opacity: 0.85
+  50%
+    opacity: 0.25
+  100%
+    opacity: 0.25
+.results-sm-filters
+  #provider-filter
+  .input-focus
+    .mat-form-field-flex
+      border: 1px solid #2b81af
+  .mat-form-field
+    width: 90%
+    font-size: 13px
+    .mat-form-field-wrapper
+      padding: 0
+  .mat-form-field-infix
+    border-top: 0px
+    padding: 0
+    .mat-form-field-label-wrapper
+      font-size: 14px
+      font-weight: 500
+      padding: 0
+      left: 24px
+      top: -2px
+      .mat-form-field-label
+        color: #1B75BC
+        box-shadow: none
+    .mat-select
+      box-sizing: border-box
+      display: flex
+      align-items: center
+      padding: 0 24px
+      height: 43px
+      .mat-select-trigger
+        //display: flex
+        //flex: 1 0 auto
+        //justify-content: space-between
+        .mat-select-value
+          color: #1B75BC
+          font-size: 14px
+        .mat-select-arrow-wrapper
+          display: flex
+          align-items: center
+          .mat-select-arrow
+            color: $app-color-blue
+            border-width: 8px
+  .mat-form-field-flex
+    background-color: white
+    border-radius: 32px
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+  .mat-option-text
+    font-size: 15px
+  .mat-input-element
+    font-size: 15px
+  .show-map
+    display: flex !important
+    align-items: center
+    justify-content: flex-end
+
+
+    .search-label
+      margin-right: 16px
+      font-size: 16px
+      font-weight: 400
+
+
+.mat-select-panel:not([class*=mat-elevation-z])
+  border-radius: 6px
+  margin-left: 0
+
+.mat-menu-item
+  display: flex !important
+  align-items: center
+  i
+    opacity: .5
+
+
+.mat-option-text
+  .mdi
+    font-size: 24px
+    color: #1B75BC
+    vertical-align: middle
+    margin-right: 10px
+    opacity: .5
+
+
+.star-icon
+  color: #ccc !important
+  font-size: 1.8em !important
+  &:before
+    color: #fdb81d !important
+
+
+.avg-cost
+  .star-icon
+    font-size: 2em !important
+    &:before
+      color: #2e970d !important
+
+.mat-select-panel
+  .mat-optgroup-label
+    font-family: 'Rubik'
+.mat-select-panel
+  .mat-option
+    font-family: 'Rubik'
+
+.mat-select
+  font-family: 'Rubik'
+  font-weight: 500
+
+.mat-option-text
+  font-size: 14px
+.mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option.rating-filter
+  line-height: 1em

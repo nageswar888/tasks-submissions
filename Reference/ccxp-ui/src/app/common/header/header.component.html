@@ -1,0 +1,81 @@
+<div class="ds-u-display--none ds-u-lg-display--block ds-u-md-display--block ds-u-xl-display--block">
+  <div class="ds-u-clearfix ds-l-row ds-u-margin-left--0 ds-u-margin-right--0"><!--ds-u-padding--1 -->
+    <div class="ds-l-lg-col--6 ds-l-xl-col--6 ds-l-md-col--6 ds-l-sm-col--6 ds-u-display--flex ds-u-align-items--center"><!--ds-l-col--10-->
+      <div class="cms-logo ds-u-border-right--1 ds-u-lg-padding-right--2">
+        <a routerLink="/home" class="ds-u-display--block">
+          <img height="65" width="140" src="../../../assets/Logos/cms-logo.png" alt="logo">
+        </a>
+      </div>
+      <a routerLink="/home" class="ds-u-text-decoration--none ds-u-lg-padding-left--2">
+        <img height="65" width="180" src="../../../assets/Logos/ccxp-logo.svg" alt="logo">
+      </a>
+    </div>
+    <div class="ds-l-lg-col--6 ds-l-xl-col--6 ds-l-md-col--6 ds-l-sm-col--6"><!--ds-u-float--left ds-u-padding-right--0-->
+      <div class="nav-tabs ds-u-float--right header-links">
+        <div class="">
+          <div class="ds-c-tabs">
+            <a class="ds-c-tabs__item" role="tab">
+              <i class="mdi mdi-magnify mdi-24px ds-u-margin-right--1" aria-hidden="true"></i>
+              <span>{{'label.search' | translate | capitalize}}</span>
+            </a>
+            <a class="ds-c-tabs__item" role="tab">
+              <i class="mdi mdi-information-outline mdi-24px ds-u-margin-right--1" aria-hidden="true"></i>
+              <span>{{'label.about' | translate | capitalize}}</span>
+            </a>
+            <a class="ds-c-tabs__item" role="tab">
+              <span>{{'label.my.medicare.gov' | translate }}</span>
+              <i class="mdi mdi-arrow-top-right"></i>
+            </a>
+            <a class="ds-c-tabs__item" role="tab">
+              <i class="mdi mdi-web mdi-24px ds-u-margin-right--1"></i>
+              <span>Español</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="ds-u-lg-display--none ds-u-md-display--none ds-u-xl-display--none ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 ds-u-align-items--center">
+
+  <!--Mobile view-->
+  <div class="ds-u-display--flex ds-u-align-items--center mobile-header-brand"><!--ds-l-col--10-->
+    <a routerLink="/home" >
+      <img width="100" src="../../../assets/Logos/cms-logo.png" alt="logo">
+    </a>
+    <span class="ds-u-border-right--1 divider-vert" ></span>
+    <a routerLink="/home" class="ds-u-text-decoration--none">
+      <img width="150" src="../../../assets/Logos/ccxp-logo.svg" alt="logo">
+    </a>
+    <span class="ds-u-float--right ds-u-margin-right--1 menu-icon mobile-header-nav ds-u-display--flex">
+      <i class="mdi mdi-magnify mdi-32px"></i>
+      <div class="hamburger-menu ds-u-margin-left--1 ds-u-margin-right--1">
+    <div class="ds-u-lg-display--none ds-u-md-display--none ds-u-xl-display--none ds-u-sm-display--inline-block">
+          <span mat-icon-button [matMenuTriggerFor]="menu" class="menu-icon">
+            <!--<mat-icon>more_vert</mat-icon>-->
+            <i class="mdi mdi-menu mdi-32px"></i>
+          </span>
+      <mat-menu #menu="matMenu">
+        <a class="mat-menu-item" >
+          <i class="mdi mdi-magnify mdi-24px ds-u-margin-right--1" aria-hidden="true"></i>
+          <span>{{'label.search' | translate | capitalize}}</span>
+        </a>
+        <a class="mat-menu-item" >
+          <i class="mdi mdi-information-outline mdi-24px ds-u-margin-right--1" aria-hidden="true"></i>
+          <span>{{'label.about' | translate | capitalize}}</span>
+        </a>
+        <a class="mat-menu-item" >
+          <i class="mdi mdi-arrow-top-right ds-u-margin-right--1"></i>
+          <span>{{'label.my.medicare.gov' | translate }}</span>
+        </a>
+        <a class="mat-menu-item" >
+          <i class="mdi mdi-web mdi-24px ds-u-margin-right--1"></i>
+          <span>Español</span>
+        </a>
+      </mat-menu>
+    </div>
+  </div>
+
+    </span>
+  </div>
+</div>

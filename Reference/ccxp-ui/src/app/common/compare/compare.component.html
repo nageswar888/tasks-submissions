@@ -1,0 +1,38 @@
+<div class=""><!--ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block ds-u-md-display--block-->
+<div class="ds-l-row" *ngIf="selectedCards.length>0">
+  <div class="ds-l-col--12 ds-l-lg-col ds-xl-col ds-md-col ds-u-margin-bottom--2 compare-labels" *ngFor="let number of [0,1,2]" >
+    <div *ngIf="selectedCards.length > number">
+      <i class="mdi mdi-close-circle mdi-18px compare-close" aria-hidden="true"
+         (click)="removeSelectedProvider(selectedCards[number].ind_pac_id);"></i>
+    </div>
+    <div class="selected-name" *ngIf="selectedCards.length > number">
+      <span>{{selectedCards[number].serialNo}}.</span>
+      <span class="ds-u-text-decoration--underline phy-title"> {{selectedCards[number].mid_nm?(selectedCards[number].frst_nm+' '+selectedCards[number].mid_nm+' '+selectedCards[number].lst_nm
+      | titlecase | textLimit:textLimit ):selectedCards[number].frst_nm+' '+selectedCards[number].lst_nm | titlecase | textLimit:textLimit}} </span>
+    </div>
+    <div *ngIf="selectedCards.length > number">
+      <span *ngIf="compareProviderType == 'Physicians'"><i class="mdi mdi-stethoscope"></i>
+      {{selectedCards[number].pri_spec | titlecase }}</span>
+    </div>
+    <div *ngIf="selectedCards.length <= number" class="provider-placeholder">
+      <span *ngIf="compareProviderType == 'Physicians'"><i class="mdi mdi-stethoscope"></i> Physician</span>
+    </div>
+  </div>
+</div>
+<div class="ds-l-row ds-u-margin-top--1" *ngIf="selectedCards.length>0">
+  <div class="ds-l-col--12 ds-l-lg-col--6 ds-l-xl-col--6 ds-l-md-col--6 ds-u-padding--0">
+    <button type="button" class="ds-c-button compare-provider-button ds-l-col--12" (click)="compareSelectedProviders()"
+            [disabled]="selectedCards.length == 1">
+      <label class="ds-u-margin-top--1"> {{selectedCards.length}}/3
+        {{'button.compare.provider.label' | translate: {"name": compareProviderType} }}</label>
+      <i class="mdi mdi-chevron-right" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="ds-l-col--12 ds-u-text-align--center ds-l-lg-col--6 ds-l-xl-col--6 ds-l-md-col--6 clear-button">
+    <span class="btn btn-link text-muted clear-button" (click)="clearAll();">
+        <i class="mdi mdi-close mdi-16px font-color-red" aria-hidden="true"></i>{{'clear.label' | translate}}
+    </span>
+  </div>
+</div>
+</div>
+

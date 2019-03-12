@@ -1,0 +1,177 @@
+<div class="ds-l-row wizard-container bg-blue-center-gradient"
+ [ngClass]="{'radial-blue' : navigationTabs.tabs[1].selected}">
+  <div class="ds-l-lg-col--3 ds-l-xl-col--3 ds-l-sm-col--12 ds-l-md-col--3"></div>
+  <div class="ds-l-lg-col--6 ds-l-xl-col--6 ds-l-sm-col--12 ds-l-md-col--6">
+    <div class="ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center wizard-content-container">
+      <div class="ds-l-row">
+        <div *ngFor=" let tab of navigationTabs.tabs" class="ds-l-col navigation-header-lables hero-text-shadow"
+        ><span [class.selected-tab]="tab.selected" (click)="tabSelected(tab)">{{tab.title}}</span></div>
+      </div>
+      <div *ngFor=" let tab of navigationTabs.tabs; let i=index">
+        <div class="ds-l-row each-tab-label1 hero-text-shadow ds-u-padding-left--4 ds-u-padding-right--4" *ngIf="tab.selected">
+          <div class="ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center">
+            {{tab.label1 | translate}}
+            <span class="ds-u-align-items--center ds-u-justify-content--center each-tab-label2 hero-text-shadow"
+                  *ngIf="tab.selected">
+              {{tab.label2 | translate}}
+            </span>
+          </div>
+        </div>
+
+        <div class="ds-l-row ds-u-text-align--center navigation-component ds-u-align-items--center ds-u-justify-content--center
+        each-tab-label2 ds-u-margin-top--7 navigation-auto-complete-row" *ngIf="tab.selected && tab.type == 'auto-completer'">
+          <div class="ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block">
+            <div class="navigation-auto-complete">
+              <div class="distance-select">
+                <span matPrefix class="provider-prefix-label">SEARCH WITHIN</span>
+                <mat-form-field floatLabel="never" id="provider-filter" [style.width]="'165px'" label="Search within">
+                  <mat-select  placeholder="{{defaultDistanceOption}} Miles" [value]="" (selectionChange)="distanceChanged($event)">
+                    <mat-select-trigger>
+                      {{defaultDistanceOption}} Miles
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let option of distanceOptions" [value]="option.id">{{option.value}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!--Auto-complete-->
+              <div class="location-select">
+                <span matPrefix class="provider-prefix-label">OF
+                </span>
+                <mat-form-field class="dialog-modal-auto-complete auto-completer" floatLabel="never">
+                  <span  *ngIf="isLocateMeActive" class="ds-u-padding-top--1">
+                    <div class="ispinner ispinner--animating ispinner--gray">
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                      <div class="ispinner__blade"></div>
+                    </div>
+                  </span>
+                  <input matInput placeholder="{{'label.city.zipCode' | translate}}" [matAutocomplete]="auto2"
+                         (keyup)="getLocationResults($event)" #location1 [formControl]="inputForm.controls['location']" class="location-input"><!-- required -->
+                  <button *ngIf="!inputForm.controls['location'].dirty && !inputForm.controls['location'].value" matSuffix type="button" class="modal-location-button ds-u-padding-left--0" tabindex="-1">
+                    <i class="mdi mdi-crosshairs-gps mdi-24px icon" matTooltip="{{'label.locate' | translate}}" [matTooltipPosition]="position"  (click)="getLocation()"></i>
+                  </button>
+                  <i matSuffix (click)="clearData('location')" matSuffix *ngIf="inputForm.controls['location'].dirty && inputForm.controls['location'].value"
+                     class="mdi mdi-close font-color-grey"></i>
+                  <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="onLocationSelect($event)">
+                    <mat-option *ngFor="let result of locationResults" [value]="result.location_text+' '+result.zip_code">
+                      <span>{{result.location_text | textLimit: 30}} </span>
+                      <span class="ds-u-float--right" >{{result.zip_code}}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <label *ngIf="!inputForm.controls['location'].valid && invalid" class="error-label">
+                    {{'label.location.required' | translate}}
+                  </label>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+          <!--MobileView-->
+          <div class=" ds-u-lg-display--none  ds-u-xl-display--none">
+            <div class="navigation-distance-auto-complete">
+              <span matPrefix class="ds-u-margin-left--1 provider-prefix-label">SEARCH WITHIN</span>
+              <mat-form-field floatLabel="never"  [style.width]="'165px'" label="Search within">
+
+                <mat-select  placeholder="" [value]="defaultDistanceOption" (selectionChange)="distanceChanged($event)">
+                  <mat-option *ngFor="let option of distanceOptions" [value]="option.id">{{option.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <!--Auto-complete-->
+            <div class="navigation-location-auto-complete">
+              <mat-form-field   class="dialog-modal-auto-complete auto-completer"  floatLabel="never" >
+                <span matPrefix class="ds-u-margin-left--1 provider-prefix-label">OF</span>
+                <span  *ngIf="isLocateMeActive" class="ds-u-padding-top--1">
+                  <div class="ispinner ispinner--animating ispinner--gray">
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                    <div class="ispinner__blade"></div>
+                  </div>
+                </span>
+                <input matInput placeholder="{{'label.city.zipCode' | translate}}" [matAutocomplete]="auto2"
+
+                       (keyup)="getLocationResults($event)" id="location1" [formControl]="inputForm.controls['location']"
+                       class="location-input"><!-- required -->
+                <button *ngIf="!inputForm.controls['location'].dirty && !inputForm.controls['location'].value" matSuffix type="button" class="modal-location-button ds-u-margin-top--1 ds-u-padding-left--0"  tabindex="-1">
+                  <i class="mdi mdi-crosshairs-gps mdi-24px icon" matTooltip="{{'label.locate' | translate}}" [matTooltipPosition]="position" (click)="getLocation()"></i>
+                </button>
+                <i matSuffix (click)="clearData('location')" matSuffix *ngIf="inputForm.controls['location'].dirty && inputForm.controls['location'].value" class="mdi mdi-close mdi-18px font-color-grey ds-u-margin-right--1"></i>
+                <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="onLocationSelect($event)" >
+                  <mat-option *ngFor="let result of locationResults" [value]="result.location_text+' '+result.zip_code">
+                    <span>{{result.location_text | textLimit: 30}} </span>
+                    <span class="ds-u-float--right" >{{result.zip_code}}</span>
+                  </mat-option>
+                </mat-autocomplete>
+                <label *ngIf="!inputForm.controls['location'].valid && invalid" class="error-label">
+                  {{'label.location.required' | translate}}
+                </label>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <!--Details Tab-->
+        <div class=" ds-u-margin-top--7 " *ngIf="tab.selected && tab.type == 'details'">
+          <div class="ds-l-row ">
+            <div class="ds-l-col--3 ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block"></div>
+            <div class="ds-l-col--7 ds-u-text-align--left ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block provider-options--desktop">
+              <div class="white-font hero-text-shadow" *ngFor="let option of tab.detailOptions">
+                <span class="mdi mdi-plus-circle-outline mdi-36px"></span>
+                <div class="navigate-option">
+                  <span>{{option.label | translate}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="ds-l-col--2 ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block"></div>
+            <!-- Mobile View-->
+            <div class="ds-l-col--12 ds-u-text-align--left ds-u-lg-display--none provider-options--mobile ds-u-xl-display--none">
+              <div class="white-font hero-text-shadow" *ngFor="let option of tab.detailOptions">
+                <span class="mdi mdi-plus-circle-outline mdi-36px"></span>
+                <div class="navigate-option">
+                  <span>{{option.label | translate}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-l-row ds-u-text-align--center ds-u-align-items--center ds-u-justify-content--center each-tab-label2 ds-u-margin-top--5 navgation-continue-button" *ngIf="tab.selected">
+          <button class="btn-primary provider-save-button" (click)="selectTab(tab,inputForm.value.location)">
+            <span *ngIf="tab.selected && tab.type == 'auto-completer' || tab.type == 'provider'" class="">{{'label.continue' | translate}}</span>
+            <span *ngIf="tab.selected && tab.type == 'details'" class="">{{'label.continue.results' | translate}}</span>
+            <i class="mdi mdi-arrow-right mdi-24px ds-u-padding-left--1"></i>
+          </button>
+        </div>
+      </div>
+      <!--    <div class="ds-l-row ds-u-text-align&#45;&#45;center ds-u-align-items&#45;&#45;center ds-u-justify-content&#45;&#45;center each-tab-label2 ds-u-margin-top&#45;&#45;7 navgation-continue-button">
+            <button class="provider-save-button" (click)="tabSelected(selectedTab,inputForm.value.location)">
+              <span *ngIf=" selectedTab.type == 'auto-completer' || selectedTab.type == 'provider'" class="">{{'label.continue' | translate}}</span>
+              <span *ngIf=" selectedTab.type == 'details'" class="">{{'label.continue.results' | translate}}</span>
+              <i class="mdi mdi-arrow-right ds-u-padding-left&#45;&#45;1"></i>
+            </button>-->
+    </div>
+  </div>
+  <div class="ds-l-lg-col--3 ds-l-xl-col--3 ds-l-sm-col--12 ds-l-md-col--3"></div>
+</div>

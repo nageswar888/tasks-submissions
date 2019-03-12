@@ -1,0 +1,217 @@
+<div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0">
+  <div class="search-results-search-bar bg-blue-gradient">
+    <div class="ds-u-clearfix ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 ds-u-margin-bottom--6
+    search-header banner-text-shadow ds-u-sm-display--none ds-u-md-display--block">
+      <div class="ds-l-md-col--12 ds-u-lg-padding-left--0 ds-u-md-padding-left--0 ds-u-xl-padding-left--0">
+        <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0">
+          <div class="search-container ds-u-padding-bottom--2 ds-u-xl-padding-bottom--0 ds-u-lg-padding-bottom--0 ds-u-md-padding-bottom--0">
+            <i class="mdi mdi-magnify mdi-36px"></i>
+            <div class="ds-u-margin-left--2 result-text">
+              Searching <span *ngIf="specialty"> <label class="dotted"><b>{{specialty}}</b></label> </span>
+              <span *ngIf="location"> near <label class="dotted"><b>{{location}}</b></label> </span>
+            </div>
+          </div>
+          <div class="search-options">
+            <span class="router-link modify-search btn-link" routerLink="/home">
+              <i class="mdi mdi-pencil"></i>
+              {{'label.modify.search' | translate}}
+            </span>
+            <span class="ds-u-border-right--1"></span>
+            <span class="recent-searches btn-link">
+              <i class="mdi mdi-history"></i>
+              {{'label.recent.search' | translate}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ds-u-clearfix ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 results-filters">
+      <div class="horiz-scroll-mobile-wrapper ds-l-col--12 ds-l-lg-col ds-l-xl-col ds-l-md-col ds-u-padding-left--0 ds-u-padding-right--0">
+        <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 horiz-scroll-mobile">
+          <!--Provider filter-->
+          <div class="ds-l-col--3 ds-l-lg-col--3 ds-l-xl-col--3 ds-l-md-col--3 ds-u-padding--0 ds-u-margin-bottom--2 ds-u-md-margin-bottom--0">
+            <mat-form-field floatLabel="never" id="">
+              <mat-select placeholder="All Provider Types" disableRipple disableOptionCentering [(value)]="selectedProvider" >
+                <mat-option *ngFor="let option of searchObject[0].options" [value]="option.label">
+                  <i class="mdi {{option.icon}}"></i> {{option.label}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!--Distance filter -->
+          <div class="ds-l-col--3 ds-l-lg-col--3 ds-l-xl-col--3 ds-l-md-col--3 ds-u-padding--0 ds-u-margin-bottom--2 ds-u-md-margin-bottom--0">
+            <mat-form-field floatLabel="never" id="" ><!--[style.width]="'100px'"-->
+              <mat-select  placeholder="Within {{defaultDistanceOption}} miles" [value]="" (selectionChange)="distanceChanged($event)">
+                <mat-select-trigger>
+                  Within {{defaultDistanceOption}} miles
+                </mat-select-trigger>
+                <mat-option *ngFor="let option of distanceOptions" [value]="option.id">{{option.value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!--Quality-->
+          <div class="ds-l-col--2 ds-l-lg-col--2 ds-l-xl-col--2 ds-l-md-col--2 ds-u-padding--0 ds-u-margin-bottom--2 ds-u-md-margin-bottom--0">
+            <mat-form-field floatLabel="never" id="provider-filter" class="">
+              <mat-select  placeholder="Quality" [value]="" (selectionChange)="ratingChanged($event)">
+                <mat-select-trigger>
+                  Quality ({{rating}})
+                </mat-select-trigger>
+                <mat-option *ngFor="let option of ratingOptions" [value]="option.id" class="rating-filter">
+                  <!--{{option.value}}-->
+                  <rating [ngModel]="option.value" [max]="option.value"
+                          [readonly]="true" style="font-size: 11px;"></rating>
+                  <span class="pull-right">and up</span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!--Insurance-->
+          <div class="ds-l-col--2 ds-l-lg-col--2 ds-l-xl-col--2 ds-l-md-col--2 ds-u-padding--0 ds-u-margin-bottom--2 ds-u-md-margin-bottom--0">
+            <mat-form-field floatLabel="never" id="provider-filter">
+              <mat-select  placeholder="Insurance" [value]="" (selectionChange)="ratingChanged($event)" [disabled]=true>
+                <mat-option></mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!--Price range-->
+          <div class="ds-l-col--2 ds-l-lg-col--2 ds-l-xl-col--2 ds-l-md-col--2 ds-u-padding--0 ds-u-margin-bottom--2 ds-u-md-margin-bottom--0">
+            <mat-form-field floatLabel="never" id="provider-filter">
+              <mat-select  placeholder="Price Range" [value]="" (selectionChange)="ratingChanged($event)" [disabled]=true>
+                <mat-option></mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="ds-l-col ds-l-lg-col--3 ds-l-xl-col--3 ds-l-md-col--3 ds-u-padding-right--0 ds-u-sm-display--none ds-u-lg-display--block banner-text-shadow show-map">
+        <div class="show-map-inner">
+          <div class="search-label">Show Map</div>
+          <label class="switch"><input checked type="checkbox" (click)="toggleMap()">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Desktop View-->
+<div class="ds-u-margin-bottom--4 ds-u-margin-top--4 results-body"*ngIf="results.length>0" >
+  <div class="ds-u-display--none ds-u-lg-display--block ds-u-xl-display--block ds-u-md-display--block">
+    <div class="ds-l-row ds-u-margin-left--0 ds-u-margin-right--0 results-div">
+      <div class="card-div ds-u-margin-bottom--1 ds-u-padding-left--0 ds-u-lg-padding-left--2 ds-u-xl-padding-left--4 ds-u-padding-right--0 ds-u-lg-padding-right--2 ds-u-xl-padding-right--4"
+           [ngClass]="showMap ? 'ds-l-col--12 ds-l-sm-col--12  ds-l-md-col--12 ds-l-lg-col--8 ds-l-xl-col--8 ': 'ds-l-col--12'">
+        <div class="ds-l-row results-table-controls ds-u-margin-left--2 ds-u-margin-right--2">
+          <div class="ds-l-col count-label">
+            Showing <b> {{totalCount}} </b> results <label *ngIf="specialty"> for <b>"{{specialty}}"</b> </label>
+          </div>
+          <div class="ds-l-col ds-u-text-align--right sort-by">
+            <div class="sort-by-container">
+              <span class="sort-label">{{'label.sort.by' | translate}}</span>
+              <mat-form-field floatLabel="never" id="sort-filter">
+                <mat-select placeholder="" [value]="defaultSortOption" (selectionChange)="changeSortOption($event)">
+                  <mat-option *ngFor="let option of sortOptions" [value]="option.id">{{option.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div>
+          <card-component [data]="results" [page]="page" [limit]="limit"
+                          [disableSelection]="selectedProviders.length == 3"
+                          (providersToCompare)="providersToCompare($event)"></card-component>
+          <app-pagination  (goNext)="onNext()"
+                           (goPrev)="onPrev()"
+                           [page]="page"
+                           [perPage]="limit"
+                           [count]="totalCount"
+                           [dataLoaded]="dataLoaded"></app-pagination>
+        </div>
+
+        <!--Compare Sections-->
+          <div class="compare-cards ds-l-col--12 ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--8 ds-l-xl-col--8"
+               *ngIf="selectedProviders.length > 0">
+                <span class="compare-count ds-u-margin-right--3">
+                  {{selectedProviders.length}}
+                </span>
+                <span class="compare-text">
+                  {{'label.compare.providers'| translate:{"name": compareProviderType} }}
+                    <span class="suggestion">Compare providers by type</span>
+
+                  <!--<div *ngIf="compareProviderType != 'Providers'" class="ccxp-font-12">-->
+                  <!--{{'label.compare.providers.with.providers'| translate:{"name": compareProviderType} }}-->
+                  <!--</div>-->
+                </span>
+              <button class="compare-button" *ngIf="selectedProviders.length > 1" (click)="compareSelectedProviders()">
+                <span>{{'label.compare' | translate}}</span>
+              </button>
+        </div>
+      </div>
+      <div class="ds-l-sm-col--12 ds-l-md-col--12 ds-l-lg-col--4 ds-l-xl-col--4 ds-u-sm-display--none ds-u-lg-display--block ds-u-padding-left--0 map-div"
+           appSticky [stickMin]="327" [stickClass]="'map-sticky'"
+           *ngIf="showMap">
+        <app-map [markerAddresses]="markerAddresses" [page]="page"></app-map>
+      </div>
+    </div>
+  </div>
+
+  <!--Mobile view -->
+  <div class="ds-u-lg-display--none results-div">
+    <div class="ds-l-row ds-u-margin-left--2 ds-u-margin-right--2 mobile-sort-filters">
+      <div class="ds-l-col count-label">
+        {{totalCount}} results
+      </div>
+      <div class="ds-l-col sort-by-filter">
+        <!-- <div class="ds-l-row ds-u-margin-right--0 ds-u-margin-left--0 ds-u-float--right sort-by-filter"> -->
+          <span class="sort-label">{{'label.sort.by' | translate}}</span>
+            <span>
+              <mat-form-field floatLabel="never" id="sort-filter">
+                <mat-select  placeholder="" [value]="defaultSortOption">
+                  <mat-option *ngFor="let option of sortOptions" [value]="option.id">{{option.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </span>
+        <!-- </div> -->
+      </div>
+    </div>
+    <auto-tab-set>
+      <auto-tab tabTitle="Results">
+        <div class="ds-u-margin-top--0 ds-u-mpadding-left--0 ds-u-padding-left--0 card-div ds-u-margin-bottom--1"><!--ds-u-margin-top--5-->
+          <card-component [data]="results" [page]="page" [limit]="limit"
+                          [disableSelection]="selectedProviders.length == 2"
+                          (providersToCompare)="providersToCompare($event)">
+          </card-component>
+          <app-pagination  (goNext)="onNext()"
+                           (goPrev)="onPrev()"
+                           [page]="page"
+                           [perPage]="limit"
+                           [count]="totalCount"
+                           [dataLoaded]="dataLoaded">
+          </app-pagination>
+            <div class="compare-cards" *ngIf="selectedProviders.length > 0">
+                <span class="compare-count ds-u-margin-right--2">
+                  {{selectedProviders.length}}
+                </span>
+                <span class="compare-text">
+                  <div>{{'label.compare.providers'| translate:{"name": compareProviderType} }}
+                  </div>
+                </span>
+                  <button class="compare-button" *ngIf="selectedProviders.length > 1" (click)="compareSelectedProviders()">
+                    {{'label.compare' | translate}}
+                  </button>
+            </div>
+        </div>
+      </auto-tab>
+      <auto-tab tabTitle="View Map">
+        <div class="">
+          <app-map [markerAddresses]="markerAddresses" [page]="page"></app-map>
+        </div>
+      </auto-tab>
+    </auto-tab-set>
+  </div>
+</div>
+<div class="no-data ds-u-text-align--center ds-u-margin-bottom--0" *ngIf="dataLoaded && results.length == 0">
+  <span class="">{{'no.provider.found' | translate}}</span>
+</div>

@@ -1,0 +1,315 @@
+<div class="provider-details">
+
+  <!-- Provider Header -->
+  <div class="provider-header banner-text-shadow bg-blue-gradient" *ngIf="physicianObject">
+    <div class="ds-u-display--flex">
+      <a class="white-font btn-link back-link" routerLink="/search-results">
+        <i class="mdi mdi-24px mdi-arrow-left ds-u-lg-margin-right--1"></i>
+        {{'label.back.search.results' | translate}}
+      </a>
+    </div>
+    <!-- Provider Name -->
+      <div class="provider-name">
+        <span>{{physicianObject.name |titlecase}}</span>
+      </div>
+
+      <!-- Specialty -->
+      <div class="provider-specialty">
+        <span>{{physicianObject.primarySpeciality |titlecase}}</span>
+        <a class="ds-u-padding-left--1 ds-u-text-decoration--underline">{{'label.other.specialties' | translate}}</a>
+      </div>
+  </div>
+
+  <!-- General Information -->
+  <div class="provider-details-section provider-general-information" *ngIf="physicianObject">
+
+    <!-- Section Title -->
+
+  <div class="provider-details-row">
+    <h2 class="right-line-heading"><span>General Information</span></h2>
+  </div>
+
+    <!--Insurance Accepted-->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <div *ngIf="physicianObject">
+          <span class="provider-metric-label">{{'label.insurance.accepted' | translate}}</span>
+        </div>
+      </div>
+      <div class="ds-l-md-col--9 ds-u-display--flex ds-u-align-items--center">
+        <i class="insurance-check-icon mdi mdi-checkbox-marked-circle mdi-24px ds-u-margin-right--2"></i>
+        <span>{{physicianObject.insurances | translate}}</span>
+      </div>
+    </div>
+
+    <!-- Lanuages Spoken -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <div class="provider-metric-label">{{'label.languages.spoken' | translate}}</div>
+        <div class="language-value">
+          <a style="text-decoration: underline;">{{'label.seen.language' | translate}}</a>
+        </div>
+      </div>
+      <div class="ds-l-md-col--9">
+        <span>{{physicianObject.languageKnown}}</span>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">Experience</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <span>{{physicianObject.experience}}</span>
+      </div>
+    </div>
+
+    <!-- Gender -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">Gender</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <span>{{physicianObject.gender}}</span>
+      </div>
+    </div>
+
+    <!-- City -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">Location &amp; Proximity</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <div class="ds-u-margin-bottom--2">
+          <span>{{physicianObject.city |titlecase}}</span>
+          <span class="ds-u-padding-left--1">{{physicianObject.primarySpeciality |titlecase}}</span> {{'label.group.practices' | translate}}
+        </div>
+        <div class="provider-address">
+          <span [outerHTML]="physicianObject.address | newline"></span>
+        </div>
+        <div class="provider-distance-directions ds-u-padding-top--1">
+          <div class="provider-distance" *ngIf="physicianObject.distance != 0">
+            {{physicianObject.distance}} mi
+            <div> <a class="provider-directions">{{'label.directions' | translate | titlecase}}</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phone Number -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">Phone Number</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <a href="tel:{{physicianObject.primaryPhoneNumber}}" *ngIf="physicianObject.primaryPhoneNumber.length > 3; else noPhone">{{physicianObject.primaryPhoneNumber}}</a>
+        <ng-template #noPhone ><label class="font-color-grey">{{'label.not.available' | translate}}</label></ng-template>
+      </div>
+    </div>
+
+    <!--Hospital Affliation-->
+    <div class="ds-l-row physician-hospital-affiliation" *ngIf="physicianObject">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.affiliation' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9">
+      <span  *ngIf="physicianObject.hospitalAffiliation.length==0" class="font-color-grey">
+            No Hospitals Affiliation
+          </span>
+      </div>
+      <div class="ds-l-lg-col--9 ds-l-xl-col--9 ds-l-sm-col--12 ds-l-md-col--9" >
+        <div class="ds-l-row">
+          <div class="ds-l-lg-col--6 ds-l-xl-col--6 ds-l-sm-col--12 ds-l-md-col--6" *ngFor="let hospital of physicianObject.hospitalAffiliation">
+            <!-- Hospital Name -->
+            <div class="hospital-name">
+              <a href="#">{{hospital.hospital_name | titlecase}}</a>
+            </div>
+            <!-- Hospital Phone Number -->
+            <div class="hospital-phone-number">
+              <a href="tel:{{hospital.phone_number}}">{{hospital.phone_number | phoneNumber}}</a>
+            </div>
+            <!-- Hospital Patient Rating -->
+            <div class="hospital-patient-rating">
+              <span>{{'label.patients.satisfaction.rating' | translate}}</span>
+              <rating [ngModel]="hospital.hospital_overall_rating" [readonly]="true" style="font-size: 12px;"></rating>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ratings and Measurements -->
+  <div class="provider-details-section provider-ratings-and-measurements" *ngIf="physicianObject">
+
+    <!-- Section Title -->
+    <div class="provider-details-row">
+      <h2 class="right-line-heading"><span>Ratings &amp; Measurements</span></h2>
+    </div>
+
+
+    <!-- Patient Recommendation -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">Patient Recommendation</span>
+      </div>
+      <div class="ds-l-md-col--2 patient-recommendation-graph">
+        <circle-progress
+          [percent]="physicianObject.overAllRating | ratingPercent"
+          [radius]="50"
+          [outerStrokeWidth]="10"
+          [outerStrokeColor]="physicianObject.overAllRating | percentColor"
+          [title]="physicianObject.overAllRating| ratingPercent"
+          [titleColor]="physicianObject.overAllRating | percentColor"
+          [showSubtitle]="false"
+          [animation]="true"
+          [titleFontSize]="30"
+          [animationDuration]="300"
+        ></circle-progress>
+      </div>
+      <div class="ds-l-md-col--6 ds-u-padding-top--6"> <span>{{'label.patients.recommended' | translate : {name:physicianObject.name} }}</span></div>
+    <div class="ds-l-md-col--1"></div>
+    </div>
+
+    <!-- Ease of Getting Appointment -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.ease.appt' |translate}}</span>
+      </div>
+      <div class="ds-l-md-col--2">
+        <circle-progress
+          [percent]="physicianObject.overAllRating | ratingPercent"
+          [radius]="50"
+          [outerStrokeWidth]="10"
+          [outerStrokeColor]="physicianObject.overAllRating | percentColor"
+          [title]="physicianObject.overAllRating| ratingPercent"
+          [titleColor]="physicianObject.overAllRating | percentColor"
+          [showSubtitle]="false"
+          [animation]="true"
+          [titleFontSize]="30"
+          [animationDuration]="300"
+        ></circle-progress>
+      </div>
+    </div>
+
+    <!-- Overall Patient Experience -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.quality.rating' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <rating [ngModel]="physicianObject.overAllRating" [readonly]="true" style="font-size: 12px;"></rating>
+        <div class="rating-label experience-rating">{{'label.national.average' | translate:{average:2} }}</div>
+      </div>
+    </div>
+
+    <!-- Office Staff -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.overall.off.staff' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <rating [ngModel]="physicianObject.staffRating" [readonly]="true" style="font-size: 12px;"></rating>
+        <div class="rating-label office-rating">{{'label.national.average' | translate:{average:3} }}</div>
+      </div>
+    </div>
+
+    <!-- Cost -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.cost' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9 avg-cost">
+        <rating [ngModel]="physicianObject.cost" [readonly]="true" style="font-size: 10px; " fullIcon="&#36;" emptyIcon="$"></rating>
+        <div class="cost-rating-label">Good Deal</div>
+      </div>
+    </div>
+
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3">
+        <span class="provider-metric-label">{{'label.patients.treated.2017' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9">
+        <span>{{physicianObject.patientsTreated}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Capabilities & Credentials -->
+  <div class="provider-details-section provider-capabilities-and-credentials">
+
+    <!-- Section Title -->
+    <div class="provider-details-row">
+      <h2 class="right-line-heading"><span>Capabilities &amp; Credentials</span></h2>
+    </div>
+
+
+    <!-- Specialities -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3" *ngIf="physicianObject">
+        <span class="provider-metric-label">{{'label.speciliaties' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9" *ngIf="physicianObject">
+        <span>{{physicianObject.primarySpeciality |titlecase}}</span>
+      </div>
+    </div>
+
+
+    <!-- Relavent Education -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3" *ngIf="physicianObject">
+        <span class="provider-metric-label">{{'label.relevant.edu' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9" *ngIf="physicianObject">
+        <span>{{physicianObject.qualifications |titlecase}}</span>
+      </div>
+    </div>
+
+    <!-- Conditions Treated -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3" *ngIf="physicianObject">
+        <span class="provider-metric-label">Conditions Treated ({{physicianObject.conditions.length}})</span>
+      </div>
+      <div class="ds-l-md-col--9" *ngIf="physicianObject">
+         <span  *ngIf="physicianObject.conditions.length==0" class="font-color-grey">
+            No Conditions
+          </span>
+        <div *ngIf="physicianObject && physicianObject.conditions.length>0">
+          <ul class="provider-list">
+            <li *ngFor="let condition of physicianObject.conditions">{{condition | titlecase}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Procudures Performed -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3" *ngIf="physicianObject">
+        <span class="provider-metric-label">Procudures Performed ({{physicianObject.procedures.length}})</span>
+      </div>
+      <div class="ds-l-md-col--9" *ngIf="physicianObject">
+        <span  *ngIf="physicianObject.procedures.length==0" class="font-color-grey">
+            No Procedures
+          </span>
+        <div *ngIf="physicianObject && physicianObject.procedures.length>0">
+          <ul class="provider-list">
+            <li *ngFor="let procedure of physicianObject.procedures">{{procedure | titlecase}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education Qualifications -->
+    <div class="ds-l-row">
+      <div class="ds-l-md-col--3" *ngIf="physicianObject">
+        <span class="provider-metric-label">{{'label.board.certifications' | translate}}</span>
+      </div>
+      <div class="ds-l-md-col--9" *ngIf="physicianObject">
+        <span *ngIf="physicianObject" class="font-color-grey">
+         None Listed
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

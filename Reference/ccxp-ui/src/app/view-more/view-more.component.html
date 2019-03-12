@@ -1,0 +1,15 @@
+<div [ngClass]="{'hospital-affiliation': isLink}"
+     *ngFor="let eachValue of list | slice:0:defaultLimit; let i=index">
+  <span>{{eachValue.name | titlecase}}
+    <span *ngIf="i < (defaultLimit-1) && list.length !== 1 && i != (list.length-1)">,</span>
+  </span><br>
+</div>
+
+<div *ngIf="list.length > 0 && list.length > initialLimit">
+  <a class="view-less" *ngIf="defaultLimit == list.length"
+     (click)="viewLessList()">  {{'label.view.less' | translate}}</a>
+    <a class="view-less" *ngIf="defaultLimit != list.length"
+       (click)="viewMoreList()">
+      + {{list.length-defaultLimit}} {{'label.view.more' | translate}}
+    </a>
+</div>

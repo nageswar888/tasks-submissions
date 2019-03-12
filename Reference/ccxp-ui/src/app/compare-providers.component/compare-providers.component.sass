@@ -1,0 +1,150 @@
+
+.header-div
+  min-height: 338px
+
+  @media screen and (max-width: 767px)
+    min-height: 145px
+
+
+.provider-actions
+  .mdi
+    opacity: .5
+    transition: all 0.2s linear
+    cursor: pointer
+
+    &:hover
+      opacity: 1
+
+.sticky-search-results-header
+  padding: 20px 0 !important
+  z-index: 100
+  animation-name: stickySlideDown
+  padding: 0
+  animation-duration: 0.5s
+  transition: 0.5s
+  background: white
+  text-shadow: none
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1)
+  transition: text-shadow 0s
+
+  .provider-name
+
+    &.white-font
+      color: #267cbf !important
+      transition: all 0.2s linear
+
+    &:hover
+      color: #0AA4D1 !important
+
+  .provider-actions
+    .mdi
+      &:hover
+        color: #267cbf
+
+  .white-font
+    color: #222 !important
+  .btn-link
+    &.white-font
+      color: #267cbf !important
+
+      .white-font
+        color: #267cbf !important
+    &:hover
+      &:before
+        background: fade_out(#3AB5E5, .8)
+        color: #143153 !important
+  .circle-icon-wrapper
+    box-shadow: none
+    background: lighten(#267cbf, 50%)
+    color: #267cbf
+
+  .back-to-results,
+  .page-title-row,
+  .provider-type-icon
+    display: none
+  .provider-comparison-row
+    margin-bottom: 0 !important
+    padding-top: 0 !important
+
+
+
+@keyframes stickySlideDown
+  0%
+    opacity: 0.7
+    transform: translateY(-100%)
+
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+
+.page-title-row
+  border-bottom: 1px solid rgba(255,255,255,0.2)
+.provider-details-wrapper
+  border-bottom: 1px solid #ddd
+
+
+.provider-column
+  white-space: normal
+
+@media screen and (max-width: 767px)
+  .compare-wrapper
+    min-width: 140%
+
+  .compare-header
+    padding: 15px 0 0 0 !important
+
+  .empty-div
+    display: none !important
+
+  .provider-details-row
+    padding: 20px
+
+    .right-line-heading
+      font-size: 1.7rem
+
+  ::ng-deep .content-section
+    white-space: nowrap
+    overflow-x: scroll
+
+  .compare-provider-value
+    white-space: normal
+
+  .provider-name
+    margin-bottom: 5px
+
+  .provider-values-labels
+    position: absolute
+    background: #d5dce4
+    top: 0
+    left: 0
+    padding: 8px 16px
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-size: 85%
+
+    a,
+    .ds-u-margin-top--1
+      display: none
+
+  .back-to-results
+    padding-left: 20px
+
+  .compare-provider-row
+    padding: 48px 0 20px 0
+    position: relative
+  &.row-0
+    background: #fff
+
+  .provider-comparison-row
+    padding: 25px 0 10px 0 !important
+
+  .sticky-search-results-header
+    .provider-name
+      &.white-font
+        font-size: 18px
+        line-height: 20px
+        margin-bottom: 5px
+
+  .provider-name-sub-details
+    font-size: 12px

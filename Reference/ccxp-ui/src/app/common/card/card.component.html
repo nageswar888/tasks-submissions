@@ -1,0 +1,115 @@
+<div class="each-card ds-u-margin-left--4 ds-u-margin-right--4" *ngFor="let card of cards; let i = index"
+     [ngClass]="{'active-card': card.marked}" >
+  <div class="ds-u-display--none ds-u-lg-display--block ds-u-md-display--block
+  ds-u-xl-display--block ds-u-sm-display--none ds-u-padding--3">
+    <div class="ds-l-row">
+      <div class="ds-col--1 ds-l-md-col--1 ds-l-lg-col--1 ds-l-xl-col--1 ds-u-text-align--right
+      ds-u-padding-top--2 checkbox-column">
+        <i class="mdi mdi-32px mdi-checkbox-marked font-color-blue cursor-type" *ngIf="card.marked"
+           (click)="onCardSelected(card,card.ind_pac_id)" ></i>
+        <i class="mdi mdi-32px mdi-checkbox-blank-outline font-color-grey cursor-type"
+           *ngIf="!card.marked && !disableSelection"
+           (click)="onCardSelected(card,card.ind_pac_id)"></i>
+        <i class="mdi mdi-32px mdi-checkbox-blank font-color-lgrey" *ngIf="disableSelection && !card.marked"></i>
+      </div>
+      <div class="ds-l-col--12 ds-l-md-col--4 ds-l-lg-col--4 ds-l-xl-col--4 grey-border-right">
+        <div class="card-content-title">{{card.npi ? 'Physician':'' }}</div>
+        <div class="phy-title" (click)="viewProvider(card.ind_pac_id)">
+          <span *ngIf="card.frst_nm">{{card.frst_nm | titlecase}}&nbsp;</span>
+          <span *ngIf="card.mid_nm">{{card.mid_nm | titlecase}}&nbsp;</span>
+          <span *ngIf="card.lst_nm">{{card.lst_nm | titlecase}}</span>
+        </div>
+        <div class="margin-top-3 pri-spec">
+          {{card.pri_spec | titlecase}}
+        </div>
+        <div class="margin-top-3 miles">
+          <span>{{card.distance/1609.344 | number:'1.2-2'}} {{'label.miles.away' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="ds-l-col--12  ds-l-md-col--3 ds-l-lg-col--3 ds-l-xl-col--3 ds-u-padding-left--5">
+        <div class="card-content-title"> Hospital Affiliation </div>
+        <div class="">
+          <div class="" *ngIf="card.hospitals && card.hospitals.length > 0">
+            <view-more [initLimit]="2" [viewList]="card.hospitals"></view-more>
+          </div>
+          <div *ngIf="card.hospitals && card.hospitals.length == 0" class="font-color-grey">
+            {{'label.no.affiliation' | translate}}
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-l-col--12  ds-l-md-col--2 ds-l-lg-col--2 ds-l-xl-col--2 avg-cost">
+        <div class="card-content-title"> Average Cost </div>
+        <rating [ngModel]="card.avg_cost"
+                [readonly]="true" style="font-size: 10px;"
+                fullIcon="&#36;"
+                emptyIcon="$"></rating>
+      </div>
+
+      <div class="ds-l-col--12  ds-l-md-col--2 ds-l-lg-col--2 ds-l-xl-col--2 star-rating">
+        <div class="card-content-title"> Quality Rating </div>
+        <rating [ngModel]="card.overall_rating"
+                [readonly]="true" style="font-size: 12px;"></rating> <!--card.phy_measures | ratingFilter-->
+      </div>
+
+      <div class="ds-l-col--12  ds-l-md-col--3 ds-l-lg-col--3 ds-l-xl-col--3">
+
+      </div>
+    </div>
+  </div>
+
+  <!--Mobile View-->
+  <div class="ds-u-lg-display--none ds-u-md-display--none ds-u-xl-display--none ds-u-sm-display--inline-block
+              ds-l-lg-col--12 ds-l-xl-col--12 ds-l-sm-col--12 ds-l-md-col--12 ds-u-padding--3">
+    <div class="ds-l-row">
+      <div class="ds-l-sm-col--1 ds-l-col--1 ds-u-padding-top--2 checkbox-column">
+        <i class="mdi mdi-32px mdi-checkbox-marked font-color-blue cursor-type" *ngIf="card.marked"
+           (click)="onCardSelected(card,card.ind_pac_id)"></i>
+        <i class="mdi mdi-32px mdi-checkbox-blank-outline font-color-grey cursor-type"
+           *ngIf="!card.marked && !disableSelection"
+           (click)="onCardSelected(card,card.ind_pac_id)"></i>
+        <i class="mdi mdi-32px mdi-checkbox-blank font-color-grey" *ngIf="disableSelection && !card.marked"></i>
+      </div>
+      <div class="ds-l-sm-col--10 ds-l-col--10">
+        <div class="card-content-title">{{card.npi ? 'Physician':'' }}</div>
+        <div class=" phy-title" (click)="viewProvider(card.ind_pac_id)">
+          <span *ngIf="card.frst_nm">{{card.frst_nm | titlecase}}&nbsp;</span>
+          <span *ngIf="card.mid_nm">{{card.mid_nm | titlecase}}&nbsp;</span>
+          <span *ngIf="card.lst_nm">{{card.lst_nm | titlecase}}</span>
+        </div>
+        <div class="pri-spec">
+          {{card.pri_spec | titlecase}}
+        </div>
+        <div class="miles ds-u-margin-bottom--1">
+          <span>{{card.distance/1609.344 | number:'1.2-2'}} {{'label.miles.away' | translate}}</span>
+        </div>
+
+        <div class="ds-l-row ds-u-margin--0 quality-sm-div">
+          <div class="ds-l-col--6 ds-u-padding--0  avg-cost">
+            <div class="card-content-title"> Average Cost </div>
+            <rating [ngModel]="card.avg_cost"
+                    [readonly]="true" style="font-size: 9px;"
+                    fullIcon="&#36;"
+                    emptyIcon="$"></rating>
+          </div>
+          <div class="ds-l-col--6 ds-u-padding--0  star-rating" >
+            <div class="card-content-title"> Quality Rating </div>
+            <rating [ngModel]="card.overall_rating"
+                    [readonly]="true" style="font-size: 10px;"></rating> <!--card.phy_measures | ratingFilter-->
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="ds-l-lg-col&#45;&#45;12 ds-l-xl-col&#45;&#45;12 ds-l-sm-col&#45;&#45;12 ds-l-md-col&#45;&#45;12 ds-l-md-col&#45;&#45;12 ds-u-display&#45;&#45;none ds-u-lg-display&#45;&#45;inline-block ds-u-md-display&#45;&#45;inline-block ds-u-xl-display&#45;&#45;inline-block ds-u-sm-display&#45;&#45;none compare-card-component">
+  <compare-component  [selectCard]="selectedCard" (clearAllData)="clearAllSections()" (removeSelectedCard)="removeSelectedCard($event)" ></compare-component>
+</div>
+-->

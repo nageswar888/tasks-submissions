@@ -1,0 +1,56 @@
+
+<div class="search-bar">
+  <form [formGroup]="searchForm">
+    <div class="ds-l-row ds-u-margin-left--1 search-component ds-u-margin-top--3">
+          <div *ngFor="let element of searchCriteriaObject" class=" "><!--ds-u-margin-right--2-->
+        <div *ngIf="element.type === 'multi-select'" class="ds-l-col--3 form-field">
+          <!--<label class="input-label">{{element.label}}</label>-->
+          <mat-form-field floatLabel="never">
+            <mat-select  placeholder="{{element.placeHolder}}" [formControl]="searchForm.controls[element.prop]" multiple disableRipple disableOptionCentering >
+              <mat-select-trigger>
+                Selected Provider ({{searchForm.value.providers.length}})
+              </mat-select-trigger>
+              <mat-option *ngFor="let option of element.options" [value]="option.label"><i class="mdi {{option.icon}}"></i> {{option.label}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="element.type === 'input' " class="ds-l-col--3">
+          <!--<label class="input-label">{{element.label}}</label>-->
+          <mat-form-field floatLabel="never">
+            <input matInput placeholder="{{element.placeHolder}}" [formControl]="searchForm.controls[element.prop]">
+            <i matSuffix (click)="clear(element.prop)" class="mdi mdi-close-circle mdi-18px font-color-grey ds-u-margin-right--1"></i>
+          </mat-form-field>
+        </div>
+
+
+        <div *ngIf="element.type === 'auto-completer' " class="ds-l-col--3">
+          <!--<label class="input-label" for="specialty">{{element.label}}</label>-->
+          <mat-form-field class="example-full-width" floatLabel="never">
+            <input matInput placeholder="{{element.placeHolder}}" [matAutocomplete]="auto"
+                   id="specialty" (keyup)="autoComplete($event, element.prop)" [formControl]="searchForm.controls[element.prop]">
+            <i matSuffix (click)="clear(element.prop)" class="mdi mdi-close-circle mdi-18px font-color-grey ds-u-margin-right--1"></i>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let result of element.results" (click)="onOptionSelected(result)"
+                          [value]="result.zip_code ? result.location_text+' '+result.zip_code : result.location_text | capitalize"><!--+' '+result.zip_code-->
+                <span>{{result.location_text | capitalize | textLimit: 30}}</span>
+                <span class="ds-u-float--right ds-u-display--none ds-u-lg-display--inline-block ds-u-md-display--none ds-u-xl-display--inline-block ds-u-sm-display--none">{{result.zip_code}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="ds-l-col--6 ds-l-lg-col--3 ds-l-xl-col--3 ds-l-md-col--3 ds-u-margin-left--5 ds-u-lg-margin-left--0
+      ds-u-xl-margin-left--0 ds-u-md-margin-left--0">
+        <button type="button" class="ds-c-button search-bar-button" (click)="emitSearchForm()">
+          <i class="mdi mdi-magnify mdi-18px ds-u-margin-right--1 "></i>
+          <label>{{'label.search' | translate}}</label>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+

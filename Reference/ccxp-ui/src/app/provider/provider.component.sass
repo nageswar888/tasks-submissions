@@ -1,0 +1,123 @@
+.provider-details
+  background-color: white
+
+
+  .provider-details-section
+    border-bottom: 1px solid #ddd
+    > .ds-l-row
+      padding: 35px 64px
+      &:nth-child(even)
+        background-color: #f9f9f9
+  .provider-header
+    padding: 48px 40px 64px
+    color: #323A45
+  .provider-name
+    font-size: 36px
+    font-weight: 500
+    color: white
+    margin: 24px 0 16px
+  .provider-specialty
+    color: white
+    font-size: 14px
+    font-weight: 400
+    a
+      color: white
+  .provider-details-title
+    h2
+      font-size: 2rem
+      font-weight: 500
+      margin: 0
+      color: #405773
+      padding: 16px 0
+  .provider-details-title-line
+    border-bottom: 1px solid #aaa
+    margin-bottom: 32px
+  .provider-metric-label
+    font-weight: 500
+  .language-value
+    margin-top: 8px
+    font-size: 12px
+    > a
+      cursor: pointer
+      color: #0071bc
+      font-weight: 600
+  .provider-distance-directions
+    .provider-distance
+      font-weight: 600
+      margin-bottom: 8px
+    .provider-directions
+      text-decoration: underline
+  .provider-details-section-title
+    padding: 0 64px
+  .physician-hospital-affiliation
+    .hospital-name
+      font-size: 16px
+      color: #0071BC
+      font-weight: 500
+      margin-bottom: 16px
+      .hospital-miles
+        margin-left: 8px
+        font-size: 14px
+        color: #323A45
+        font-weight: 400
+    .hospital-patient-rating
+      margin-top: 8px
+      display: inline-block
+      vertical-align: middle
+      span
+        margin-right: 16px
+        font-size: 14px
+    .hospital-phone-number
+      text-decoration: underline
+    .hospital-save
+      .provider-save-button
+        border: none
+        background: none
+        box-shadow: none
+        font-size: 14px
+        font-weight: 400
+
+  .rating-label
+    font-size: 16px
+    font-weight: 500
+    margin-top: 12px
+    &.experience-rating
+      color: #4AA564
+    &.office-rating
+      color: #CD2026
+
+  .patient-recommendation-graph
+    display: flex
+    align-items: center
+    div
+      margin-left: 16px
+
+  ul.provider-list
+    margin: 0
+    padding: 0
+    list-style: none
+    li
+      margin-bottom: 16px
+      &:last-child
+        margin-bottom: 0
+  .cost-rating-label
+    margin-top: 12px
+
+
+@media screen and (max-width: 767px)
+  .provider-details
+    .provider-header
+      padding: 30px 20px
+  .right-line-heading
+    padding: 20px
+    font-size: 22px
+  .provider-details-row
+    padding: 0
+  .provider-details
+    .provider-details-section
+      > .ds-l-row
+        padding: 20px
+
+  .provider-metric-label
+    margin-bottom: 10px
+    display: block

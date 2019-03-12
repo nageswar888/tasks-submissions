@@ -1,0 +1,51 @@
+::ng-deep .mat-select-panel
+  min-width: calc(100% + 48px) !important
+
+::ng-deep .star-rating
+  .rating
+    margin-top: -6px
+    display: block
+
+::ng-deep .mobile-sort-filters .mat-form-field-infix
+  width: 120px
+
+@media screen and (max-width: 767px)
+  .show-map
+    display: none
+  ::ng-deep .ds-c-tabs__item:last-child
+    border-right: none
+  .search-results-search-bar
+    padding: 20px 0 0 0
+  .compare-cards
+    padding: 10px
+    left: 10px
+    right: 10px
+    min-height: 40px
+  .compare-text
+    font-size: 16px
+  .search-header
+    margin-bottom: 25px !important
+
+  .horiz-scroll-mobile-wrapper
+    white-space: nowrap
+    overflow-x: scroll
+
+    .horiz-scroll-mobile
+      width: 250%
+      padding: 0 20px
+
+  .mat-option
+    .star-icon
+      top: -7px
+
+  .mat-select-panel:not([class*=mat-elevation-z])
+    width: auto
+    margin-top: 42px
+
+  .search-options
+    margin: auto
+
+
+  .result-text
+    font-size: 24px
+    line-height: 34px
